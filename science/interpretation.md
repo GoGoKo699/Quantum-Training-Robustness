@@ -121,7 +121,7 @@ The favorable $`\delta^{-1}`$ law also depends on testing near a perfectly passi
 
 ## 6. A scalable consequence under exact tensor factorization
 
-For an exact tensor product of $`n`$ local qubit channels, with a product-unitary target, the [product-channel theorem](product_channels.md) has constants uniform in register size. For $`0<\delta\le1/8`$ and confidence bounded away from $`1/2`$:
+For an exact tensor product of $`n`$ local qubit channels, with a product-unitary target, the [product-channel theorem](product_channels.md) has constants uniform in register size. For $`0\lt \delta\le1/8`$ and confidence bounded away from $`1/2`$:
 
 | Available global probes | Optimal global examples |
 |---|---|
