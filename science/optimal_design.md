@@ -18,7 +18,7 @@ and the gap on the complex traceless operator space by
 
 ```math
 \mu_S=
-\min_{\substack{\operatorname{Tr}A=0\\\|A\|_F=1}}Q_S(A).
+\min_{\substack{\mathrm{Tr}\,A=0\\\|A\|_F=1}}Q_S(A).
 ```
 
 When $`\mu_S>0`$, the smallest constant in the global channel inequality is
@@ -34,7 +34,7 @@ Here $`\epsilon_S`$ is the weighted survival infidelity and $`R_H`$ is Haar aver
 **Theorem 1, support bound.** Every weighted pure-state ensemble satisfies the following statements.
 
 1. If $`N\leq d`$, then $`\mu_S=0`$.
-2. If $`d<N\leq d^2`$, then
+2. If $`d\lt N\leq d^2`$, then
 
    ```math
    \mu_S\leq\frac{N-d}{d(N-1)},
@@ -56,11 +56,11 @@ An equiangular tight frame in this statement means
 ```math
 \frac1N\sum_iP_i=\frac{I}{d},
 \qquad
-\operatorname{Tr}(P_iP_j)=\frac{N-d}{d(N-1)}
+\mathrm{Tr}(P_iP_j)=\frac{N-d}{d(N-1)}
 \quad(i\neq j).
 ```
 
-The equality characterization is conditional on existence in the specified dimension and cardinality. It does not assert that an equiangular tight frame exists for every $`d<N\leq d^2`$. At $`N=d^2`$, the frame and projective-design characterizations agree.
+The equality characterization is conditional on existence in the specified dimension and cardinality. It does not assert that an equiangular tight frame exists for every $`d\lt N\leq d^2`$. At $`N=d^2`$, the frame and projective-design characterizations agree.
 
 ## Operator representation
 
@@ -71,7 +71,7 @@ Use column vectorization, with the input factor first:
 =\sum_{j,k}A_{jk}|k\rangle\otimes|j\rangle,
 \qquad
 \langle\!\langle A|B\rangle\!\rangle
-=\operatorname{Tr}(A^\dagger B).
+=\mathrm{Tr}(A^\dagger B).
 ```
 
 Define operators on this $`d^2`$-dimensional Hilbert space by
@@ -97,11 +97,11 @@ Then $`Q_S(A)=\langle\!\langle A|\mathsf Q|A\rangle\!\rangle`$. Each summand of 
 Also
 
 ```math
-\operatorname{Tr}M=1,
+\mathrm{Tr}\,M=1,
 \qquad
-\operatorname{rank}M\leq N,
+\mathrm{rank}\,M\leq N,
 \qquad
-\operatorname{Tr}\mathsf Q=d-1.
+\mathrm{Tr}\,\mathsf Q=d-1.
 ```
 
 These are operator traces on the vectorized space, except for the ordinary trace in the vectorization inner product.
@@ -120,7 +120,7 @@ Thus $`\mu_S\leq\lambda_{\min}(\rho_S)`$. This also handles ensembles that do no
 
 ## Bound without a balance assumption
 
-Assume $`\mu_S>0`$ and temporarily choose $`0<\mu<\mu_S`$. Set
+Assume $`\mu_S>0`$ and temporarily choose $`0\lt \mu\lt \mu_S`$. Set
 
 ```math
 B=\rho_S-\mu I\succ0,
@@ -131,24 +131,24 @@ H=B^{\mathsf T}\otimes I+\mu\Pi_0.
 The gap inequality implies $`M\preceq H`$. Therefore the eigenvalues of $`H^{-1/2}MH^{-1/2}`$ lie in $`[0,1]`$, and its rank is at most $`N`$. It follows that
 
 ```math
-N\geq\operatorname{Tr}(H^{-1}M).
+N\geq\mathrm{Tr}(H^{-1}M).
 ```
 
 Write
 
 ```math
-s=\operatorname{Tr}B^{-1},
-\qquad s_2=\operatorname{Tr}B^{-2},
+s=\mathrm{Tr}\,B^{-1},
+\qquad s_2=\mathrm{Tr}\,B^{-2},
 \qquad
-a=\operatorname{Tr}(\rho_SB^{-1})=d+\mu s,
+a=\mathrm{Tr}(\rho_SB^{-1})=d+\mu s,
 \qquad
-b=\operatorname{Tr}(\rho_SB^{-2})=s+\mu s_2.
+b=\mathrm{Tr}(\rho_SB^{-2})=s+\mu s_2.
 ```
 
 The rank-one inverse formula gives
 
 ```math
-\operatorname{Tr}(H^{-1}M)
+\mathrm{Tr}(H^{-1}M)
 =a-\frac{\mu}{a}
      \sum_i p_i\langle\psi_i|B^{-1}|\psi_i\rangle^2.
 ```
@@ -181,10 +181,10 @@ The first inequality is Cauchy–Schwarz. For completeness, the second has an el
 \begin{aligned}
 \tau(s^2-s_2)
 &=2(d-1)s
- +2\sum_{i<j<k}
+ +2\sum_{i\lt j\lt k}
    \frac{x_i^2+x_j^2+x_k^2}{x_ix_jx_k}\\
 &\geq2(d-1)s
- +2\sum_{i<j<k}
+ +2\sum_{i\lt j\lt k}
    \left(\frac1{x_i}+\frac1{x_j}+\frac1{x_k}\right)\\
 &=d(d-1)s.
 \end{aligned}
@@ -220,13 +220,13 @@ No balance, equal-weight, or general-position hypothesis entered this proof.
 
 ## Equality and the potentially singular endpoint
 
-Suppose $`d<N\leq d^2`$ and the cardinality bound is saturated. Define
+Suppose $`d\lt N\leq d^2`$ and the cardinality bound is saturated. Define
 
 ```math
 q=\frac{N-d}{d(N-1)}=\mu_S>0.
 ```
 
-One must justify passing to $`\mu=q`$, since $`B`$ was made invertible by using $`\mu<\mu_S`$. The proof retained the explicit slack
+One must justify passing to $`\mu=q`$, since $`B`$ was made invertible by using $`\mu\lt \mu_S`$. The proof retained the explicit slack
 
 ```math
 F-\frac{d(1-\mu)}{1-d\mu}
@@ -255,7 +255,7 @@ The traceless part of $`M`$ has trace $`(d-1)/d`$ and rank at most $`N-1`$. Its 
 Consider the weighted projector Gram matrix
 
 ```math
-G_{ij}=\sqrt{p_ip_j}\operatorname{Tr}(P_iP_j),
+G_{ij}=\sqrt{p_ip_j}\mathrm{Tr}(P_iP_j),
 \qquad
 v=(\sqrt{p_1},\ldots,\sqrt{p_N})^{\mathsf T}.
 ```
@@ -276,7 +276,7 @@ p_i=c+\left(\frac1d-c\right)p_i,
 For distinct indices, the off-diagonal entries give
 
 ```math
-\operatorname{Tr}(P_iP_j)=\frac1d-c
+\mathrm{Tr}(P_iP_j)=\frac1d-c
 =\frac{N-d}{d(N-1)}.
 ```
 
@@ -296,7 +296,7 @@ Equality requires every traceless eigenvalue to equal this average, so
 \mathsf Q=\frac{I-\Pi_0}{d+1}.
 ```
 
-To recover the state moment condition without assuming balance, take the partial trace over the output factor. The definition of $`\mathsf Q`$ gives $`\operatorname{Tr}_{\rm out}\mathsf Q=(d-1)\rho_S^{\mathsf T}`$. The displayed equality therefore forces $`\rho_S=I/d`$. Substituting back yields
+To recover the state moment condition without assuming balance, take the partial trace over the output factor. The definition of $`\mathsf Q`$ gives $`\mathrm{Tr}_{\rm out}\mathsf Q=(d-1)\rho_S^{\mathsf T}`$. The displayed equality therefore forces $`\rho_S=I/d`$. Substituting back yields
 
 ```math
 M=\frac{I+|I\rangle\!\rangle\langle\!\langle I|}{d(d+1)}.
@@ -318,7 +318,7 @@ For a fixed menu of rays, define
 ```math
 \mu_*=
 \max_{p\in\Delta_N}
-\lambda_{\min}\left(\left.\sum_i p_i\mathsf Q_i\right|_{\operatorname{Tr}A=0}\right),
+\lambda_{\min}\left(\left.\sum_i p_i\mathsf Q_i\right|_{\mathrm{Tr}\,A=0}\right),
 \qquad
 C_*=\frac1{(d+1)\mu_*}
 \quad(\mu_*>0).
@@ -326,7 +326,7 @@ C_*=\frac1{(d+1)\mu_*}
 
 The simplex $`\Delta_N`$ includes zero weights, since an optimizer may choose not to use an available ray. The objective is continuous and concave, and a maximum exists. If strictly positive weights are required, mixing an optimizer with any positive distribution approaches the same optimum.
 
-The support theorem applies to the positive support of each candidate distribution. Since the cardinality bound increases strictly with support size below $`d^2`$, an $`N`$-ray menu with $`d<N\leq d^2`$ can attain the stated $`N`$-ray bound only by using every ray, uniformly, in an equiangular tight frame. For $`N\geq d^2`$, it attains $`C_*=1`$ exactly when its rays admit weights forming a projective $`2`$-design, possibly on a smaller subcollection.
+The support theorem applies to the positive support of each candidate distribution. Since the cardinality bound increases strictly with support size below $`d^2`$, an $`N`$-ray menu with $`d\lt N\leq d^2`$ can attain the stated $`N`$-ray bound only by using every ray, uniformly, in an equiangular tight frame. For $`N\geq d^2`$, it attains $`C_*=1`$ exactly when its rays admit weights forming a projective $`2`$-design, possibly on a smaller subcollection.
 
 The [convex minimax formula](certification.md#fixed-menu-minimax-duality) turns $`\mu_*`$ into a single physical alternative that is hard for every allowed ray. This is why the cardinality bound constrains arbitrary adaptive certification strategies rather than only a chosen weighted survival statistic.
 
