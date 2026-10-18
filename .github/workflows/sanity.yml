@@ -1,0 +1,50 @@
+name: Repository sanity checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, 'verification/**']
+    paths: ['verification/**', '.github/workflows/sanity.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sanity-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.13.5'
+      - name: Record the public source revision
+        run: |
+          mkdir -p review-output
+          git rev-parse HEAD | tee review-output/revision.txt
+          git archive HEAD --format=zip -o review-output/source.zip
+      - name: Install numerical and optional browser dependencies
+        run: python -m pip install numpy==2.3.5 -r verification/requirements-browser.txt
+      - name: Check explicit mathematics
+        run: python verification/check_math.py | tee review-output/math.txt
+      - name: Check navigation and the common learning map
+        if: always()
+        run: python verification/check_structure.py | tee review-output/structure.txt
+      - name: Install Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Capture actual GitHub rendering
+        run: python verification/capture_hosted.py --ref "$GITHUB_SHA" | tee review-output/hosted.txt
+      - name: Retain review evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sanity-${{ github.sha }}
+          path: review-output/
+          retention-days: 7
+          if-no-files-found: error
