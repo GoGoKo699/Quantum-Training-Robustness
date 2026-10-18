@@ -12,7 +12,7 @@ Let $`\overline\rho=\sum_i p_iP_i`$ be the ensemble's mean input state. Define
 G_S(A)=\frac12\sum_i p_i\|[A,P_i]\|_F^2,
 \qquad
 \gamma_S=
-\min_{\substack{\operatorname{Tr}A=0\\\|A\|_F=1}}G_S(A).
+\min_{\substack{\mathrm{Tr}\,A=0\\\|A\|_F=1}}G_S(A).
 ```
 
 The matrices in this minimization are complex and need not be Hermitian. Direct expansion for a rank-one projector gives
@@ -48,7 +48,7 @@ For any trace-preserving channel with Kraus operators $`K_a`$, summing the rank-
 \boxed{
 \sum_aG_S(K_a)
 =\epsilon_S(\mathcal E)
-+\frac12\operatorname{Tr}
++\frac12\mathrm{Tr}
 \left[\overline\rho\bigl(\mathcal E(I)-I\bigr)\right].
 }
 ```
@@ -99,11 +99,11 @@ u(\mathcal E)
 =\frac12\left\|\mathcal E(I/d)-I/d\right\|_1.
 ```
 
-Set $`D=\mathcal E(I)-I`$. Trace preservation implies $`\operatorname{Tr}D=0`$, and $`\|D\|_1=2d\,u(\mathcal E)`$. Subtracting the midpoint of the extreme eigenvalues of $`\overline\rho`$ gives
+Set $`D=\mathcal E(I)-I`$. Trace preservation implies $`\mathrm{Tr}\,D=0`$, and $`\|D\|_1=2d\,u(\mathcal E)`$. Subtracting the midpoint of the extreme eigenvalues of $`\overline\rho`$ gives
 
 ```math
 \begin{aligned}
-\operatorname{Tr}(\overline\rho D)
+\mathrm{Tr}(\overline\rho D)
 &\leq\frac{\lambda_{\max}(\overline\rho)
 -\lambda_{\min}(\overline\rho)}{2}\|D\|_1\\
 &=d\left[\lambda_{\max}(\overline\rho)
@@ -159,7 +159,7 @@ More explicitly, positive constants $`c_S,C_S',\varepsilon_0`$ exist such that t
 **Lower bound.** Two channel families provide the two terms. A depolarizing channel
 
 ```math
-\mathcal D_q(X)=(1-q)X+q\operatorname{Tr}(X)I/d
+\mathcal D_q(X)=(1-q)X+q\mathrm{Tr}(X)I/d
 ```
 
 has $`u(\mathcal D_q)=0`$ and $`R(\mathcal D_q)=\epsilon_S(\mathcal D_q)=q(d-1)/d`$. Thus the choice $`q=d\varepsilon/(d-1)`$ gives $`\Phi_S\geq\varepsilon`$ for sufficiently small $`\varepsilon`$.
