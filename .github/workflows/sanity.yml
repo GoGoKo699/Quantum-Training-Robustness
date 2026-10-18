@@ -4,10 +4,14 @@ on:
   workflow_dispatch:
   push:
     branches: [main, 'verification/**']
-    paths: ['verification/**', '.github/workflows/sanity.yml']
+    paths: ['**.md', 'llms.txt', 'references/**', 'verification/**', '.github/workflows/sanity.yml']
 
 permissions:
   contents: read
+
+defaults:
+  run:
+    shell: bash
 
 concurrency:
   group: sanity-${{ github.ref }}
@@ -38,6 +42,10 @@ jobs:
         run: python verification/check_structure.py | tee review-output/structure.txt
       - name: Install Chromium
         run: python -m playwright install --with-deps chromium
+      - name: Exercise source and browser regression fixtures
+        env:
+          QTR_BROWSER_TESTS: '1'
+        run: python verification/test_review.py -v 2>&1 | tee review-output/regressions.txt
       - name: Capture actual GitHub rendering
         run: python verification/capture_hosted.py --ref "$GITHUB_SHA" | tee review-output/hosted.txt
       - name: Retain review evidence
