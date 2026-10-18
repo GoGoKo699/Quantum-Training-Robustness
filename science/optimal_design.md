@@ -33,23 +33,25 @@ Here $`\epsilon_S`$ is the weighted survival infidelity and $`R_H`$ is Haar aver
 
 **Theorem 1, support bound.** Every weighted pure-state ensemble satisfies the following statements.
 
-1. If $`N\leq d`$, then $`\mu_S=0`$.
-2. If $`d\lt N\leq d^2`$, then
+**1.** If $`N\leq d`$, then $`\mu_S=0`$.
 
-   ```math
-   \mu_S\leq\frac{N-d}{d(N-1)},
-   \qquad
-   C_S\geq\frac{d(N-1)}{(d+1)(N-d)}.
-   ```
+**2.** If $`d\lt N\leq d^2`$, then
 
-   Equality holds exactly when the rays form an equiangular tight frame and all weights are $`1/N`$.
-3. For every $`N`$,
+```math
+\mu_S\leq\frac{N-d}{d(N-1)},
+\qquad
+C_S\geq\frac{d(N-1)}{(d+1)(N-d)}.
+```
 
-   ```math
-   \mu_S\leq\frac{1}{d+1}.
-   ```
+Equality holds exactly when the rays form an equiangular tight frame and all weights are $`1/N`$.
 
-   Equality holds exactly for a weighted complex projective $`2`$-design. Consequently the optimal possible linear coefficient is $`C_S=1`$, and it requires at least $`d^2`$ support rays.
+**3.** For every $`N`$,
+
+```math
+\mu_S\leq\frac{1}{d+1}.
+```
+
+Equality holds exactly for a weighted complex projective $`2`$-design. Consequently the optimal possible linear coefficient is $`C_S=1`$, and it requires at least $`d^2`$ support rays.
 
 An equiangular tight frame in this statement means
 
