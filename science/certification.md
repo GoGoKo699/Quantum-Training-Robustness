@@ -354,7 +354,7 @@ For the matching upper bound, fix any positive weights and define
 
 ```math
 m_S(\delta)
-=\min_{\substack{\mathcal E\ {m CPTP}\\R_H(\mathcal E)\geq\delta}}
+=\min_{\substack{\mathcal E\ \text{CPTP}\\R_H(\mathcal E)\geq\delta}}
   \epsilon_S(\mathcal E).
 ```
 
