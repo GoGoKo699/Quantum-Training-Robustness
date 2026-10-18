@@ -1,0 +1,46 @@
+# Quantum Training Robustness
+
+> A scientific account of when finite pure-state training probes control the Haar-average error of a learned quantum operation, and the optimal certification cost under fresh inputs selected by classical labels.
+
+The target is unitary; the hypothesis is an arbitrary CPTP channel unless a page explicitly adds a unital or exact tensor-product promise. The repository contains derivations, primary-source attribution, and reproducible finite numerical checks.
+
+## Entry points
+
+- [README](README.md): Main question, results, scope, purpose, and contact.
+- [Scientific map](science/README.md): Reading routes and notation.
+- [Interpretation](science/interpretation.md): Consequences for training, physical promises, and resource accounting.
+
+## Definitions and proofs
+
+- [Model](science/model.md): Pure probes, survival loss, Haar risk, and certification access.
+- [Robustness](science/robustness.md): Exact Kraus identities; the common right-eigenoperator criterion; optimal linear coefficient; physical sharpness; full exponent trichotomy.
+- [Probe geometry](science/probe_geometry.md): Coordinate-support graph, minimal support, explicit qubit obstruction, dimension dependence, and optimized basis-plus-superposition weights.
+- [Optimal design](science/optimal_design.md): Universal support-size bound for arbitrary weights and imbalance, ETF equality conditions, and the projective 2-design endpoint.
+- [Nonunitality](science/nonunitality.md): Exact commutator identity, sharp unital coefficient, quantitative deviation bound, joint frontier, and dissipative realization.
+- [Certification](science/certification.md): Adaptive classical-to-quantum fidelity converse, minimax adversary, finite-sample sandwich, exact joint limiting coefficient, target-copy comparison, and noisy-baseline limits.
+- [Product channels](science/product_channels.md): Exact tensor-product promise, uniform two-versus-three global probe laws, sharp coefficients, and physical costs.
+
+## Sources and verification
+
+- [Related work](references/RELATED_WORK.md): Established ingredients and the extent of the extensions.
+- [BibTeX references](references/references.bib): Primary-source bibliography.
+- [Verification guide](verification/README.md): Commands, recorded environment, seed, tolerances, and limits of finite checks.
+- [NumPy checks](verification/check_math.py): Explicit matrices, spectra, channels, and product formulas.
+- [Dependency](verification/requirements.txt): NumPy version range.
+- [License](LICENSE): MIT license.
+
+## Interpretation constraints
+
+Read the model before transferring a theorem to another access setting. R and R_H denote the same Haar-average infidelity. State fidelity in the certification proof is squared Uhlmann fidelity.
+
+The variance gap is minimized over all traceless complex operators, including nonnormal ones. Restricting it to Hermitian operators removes the relevant dissipative directions.
+
+Exact identification, finite-loss robustness, and statistical certification are different properties. The best global linear coefficient does not determine the full finite-error frontier.
+
+The exact sampling coefficient for a fixed menu holds as both target error and decision error tend to zero, with system dimension fixed and ideal target-output projectors. Fixed-confidence two-sided testing has a bracket; perfect completeness has a sharper coefficient statement.
+
+The adaptive lower bounds allow quantum output memory and collective readout, but each input is fresh and chosen by a classical label. The proofs do not grant input entanglement with retained memory, coherent probe choice, output recycling, or environment access.
+
+The product-channel application requires exact tensor factorization. Every global example includes all n qubits and local channel uses. Its uniform scaling is proved separately from the fixed-dimension general theorem.
+
+Training-loss estimates used to select a hypothesis are not automatically valid fresh certification data. Finite numerical checks corroborate constructions; they do not prove universal theorems or literature priority.
