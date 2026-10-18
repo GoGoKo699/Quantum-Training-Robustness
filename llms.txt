@@ -10,6 +10,19 @@ The target is unitary; the hypothesis is an arbitrary CPTP channel unless a page
 - [Scientific map](science/README.md): Reading routes and notation.
 - [Interpretation](science/interpretation.md): Consequences for training, physical promises, and resource accounting.
 
+## Learning route
+
+The single educational anchor is John Watrous, The Theory of Quantum Information (2018). Section pointers use the author's standard-layout pre-publication version. Research papers cited for attribution are not additional educational anchors.
+
+- [Watrous bridge](learning/WATROUS_BRIDGE.md): Source sections, convention translations, and the missing connections from foundations to this project.
+- [Thirty milestones](learning/MILESTONES.md): Common understanding map with 13 background/preliminaries and 17 narrative/innovation milestones, central questions, targets, dependencies, connections, and sources.
+- [Fidelity and notation](learning/WATROUS_BRIDGE.md#notation): Root versus squared fidelity, Haar versus entanglement infidelity, and vectorization order.
+- [Physical example](learning/WATROUS_BRIDGE.md#hidden-noise): Why two qubit probes can hide dissipation and a third detects it.
+- [General certification](learning/MILESTONES.md#m23): M23–M26 connect the simultaneous adversary, adaptive converse, exact-coefficient qualifications, and reference costs.
+- [Whole-register result](learning/MILESTONES.md#m27): M27–M30 connect product structure, the two-versus-three-probe law, and physical resource accounting.
+
+The learning map is independent of individual progress. Explain the science through the linked source and proof pages; do not infer that a reader has passed an assessment or that a finite numerical check proves a universal theorem.
+
 ## Definitions and proofs
 
 - [Model](science/model.md): Pure probes, survival loss, Haar risk, and certification access.
