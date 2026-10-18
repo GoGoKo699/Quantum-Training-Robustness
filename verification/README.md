@@ -55,3 +55,27 @@ Finite diagonalizations corroborate the written eigenvalue formulas at the liste
 Similarly, the product examples evaluate selected points within the proved range. The entire interval $`0<\delta\le1/8`$, the lower bound for every mixed tensor string, and the validity of the product inequality for all permitted coordinates follow from the analytical arguments in [Product channels](../science/product_channels.md). The script does not simulate adaptive quantum verifiers or establish their optimality by enumeration. Those statements use the fidelity converse and minimax proof in [Certification](../science/certification.md).
 
 The checks are numerical corroboration of the explicit mathematical constructions. They do not measure hardware performance, characterize unknown preparation or readout errors, or establish a literature-priority claim.
+
+## Navigation and learning-map checks
+
+The standard-library [source checker](check_structure.py) validates relative links and their anchors, mathematical fences and grouping braces, the ordered M01–M30 map, its five required fields per milestone, and backward dependencies. It also checks the 13/17 phase allocation and the selected anchor in the reading entrypoints.
+
+```bash
+python3 verification/check_structure.py
+```
+
+Its printed counts refer to the checked tree. These structural checks do not establish that the prose teaches the intended concepts, that the equations are true, or that GitHub has rendered them correctly. Those require semantic and visual review.
+
+## Actual hosted mathematical rendering
+
+The optional [capture script](capture_hosted.py) opens eight public GitHub pages at a full commit SHA: the README, both learning pages, and five proof pages. It saves full-page screenshots, the hosted HTML and text, heading coordinates, and a JSON report. It traverses open shadow roots to inspect mathematical nodes and flags detected renderer errors or missing rendering. It does not render local Markdown as a substitute for the hosted page.
+
+```bash
+python3 -m pip install -r verification/requirements-browser.txt
+python3 -m playwright install --with-deps chromium
+python3 verification/capture_hosted.py --ref "$(git rev-parse HEAD)"
+```
+
+The optional [browser dependency](requirements-browser.txt) is separate from the numerical suite. A network failure or an unrecognized renderer is a failed or incomplete capture, not evidence of a clean page. Successful capture still requires visual inspection of the screenshots for clipping, table collisions, notation, and layout.
+
+The [repository audit workflow](../.github/workflows/sanity.yml) uses pinned action revisions, read-only contents permission, no secrets, and a 15-minute cap. It runs on manual dispatch and on verification-file changes to `main` or verification branches. The artifact contains only the checked public source archive, test output, and rendering diagnostics; it is retained for seven days. Workflow success is not a proof certificate or an automatic release action.
