@@ -33,7 +33,7 @@ Write
 
 ```math
 x_j=1-F_e(\mathcal E_j),\qquad
-y_{jr}=1-\operatorname{Tr}[P_r\mathcal E_j(P_r)],
+y_{jr}=1-\mathrm{Tr}[P_r\mathcal E_j(P_r)],
 \qquad r\in\{0,+,1\}.
 ```
 
@@ -57,7 +57,7 @@ Both global probes in $`S_2`$ being preserved exactly forces every local map to 
 
 ## 3. Matching two-direction law
 
-For any fixed $`\alpha_*<1/2`$, there are positive constants independent of $`n,\delta,\alpha`$ such that, for $`0<\delta\le1/8`$ and $`0<\alpha\le\alpha_*`$,
+For any fixed $`\alpha_*\lt 1/2`$, there are positive constants independent of $`n,\delta,\alpha`$ such that, for $`0\lt \delta\le1/8`$ and $`0\lt \alpha\le\alpha_*`$,
 
 ```math
 T_2^\star(\delta,\alpha)
@@ -122,7 +122,7 @@ x(t)=x_\delta
 :=1-\left(1-\frac{D+1}{D}\delta\right)^{1/n}.
 ```
 
-For $`0<\delta\le1/8`$, put $`z=(D+1)\delta/D\le3/16`$. The inequality $`z=1-(1-x_\delta)^n\le nx_\delta`$ gives the lower bound below. The elementary inequalities $`1-e^{-u}\le u`$ and $`-\log(1-z)\le z/(1-z)`$ give its upper bound:
+For $`0\lt \delta\le1/8`$, put $`z=(D+1)\delta/D\le3/16`$. The inequality $`z=1-(1-x_\delta)^n\le nx_\delta`$ gives the lower bound below. The elementary inequalities $`1-e^{-u}\le u`$ and $`-\log(1-z)\le z/(1-z)`$ give its upper bound:
 
 ```math
 \frac\delta n\le x_\delta\le\frac{2\delta}{n},
@@ -152,7 +152,7 @@ T\ge
 =\Omega\!\left(\frac n{\delta^2}\log\frac1\alpha\right).
 ```
 
-Here $`b`$ is uniformly bounded away from one; $`-\log(1-b)\le2b`$ is sufficient in the stated range. The confidence comparison is uniform for $`\alpha\le\alpha_*<1/2`$. Quantum memory and collective measurements cannot remove this penalty under the specified input access.
+Here $`b`$ is uniformly bounded away from one; $`-\log(1-b)\le2b`$ is sufficient in the stated range. The confidence comparison is uniform for $`\alpha\le\alpha_*\lt 1/2`$. Quantum memory and collective measurements cannot remove this penalty under the specified input access.
 
 ## 4. An exact three-probe inequality
 
