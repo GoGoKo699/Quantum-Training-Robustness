@@ -38,8 +38,12 @@ def anchors(text: str) -> set[str]:
     return result
 
 
-def source_math(text: str, name: str) -> int:
-    """Validate paired fences, inline delimiters, and unescaped grouping braces."""
+def math_expressions(text: str, name: str) -> list[str]:
+    """Extract and validate the math syntax used in this repository.
+
+    The two renderer guards reflect observed GitHub failures, not a general
+    restriction on valid TeX. Non-math code, links, and HTML are not rewritten.
+    """
     if any(ord(c) < 32 and c not in '\n\t' for c in text):
         raise AssertionError(f'{name}: unexpected control character')
     fence = None
@@ -67,6 +71,10 @@ def source_math(text: str, name: str) -> int:
     if fence is not None:
         raise AssertionError(f'{name}: unclosed fence')
     for expression in expressions:
+        if "<" in expression:
+            raise AssertionError(f"{name}: raw less-than in math; use the hosted-safe lt macro")
+        if re.search(r"\\operatorname\b", expression):
+            raise AssertionError(f"{name}: operatorname is rejected by the inspected GitHub renderer")
         depth = 0
         for token in re.finditer(r'(?<!\\)[{}]', expression):
             depth += 1 if token[0] == '{' else -1
@@ -74,7 +82,11 @@ def source_math(text: str, name: str) -> int:
                 raise AssertionError(f'{name}: unmatched math brace')
         if depth:
             raise AssertionError(f'{name}: unmatched math brace')
-    return len(expressions)
+    return expressions
+
+
+def source_math(text: str, name: str) -> int:
+    return len(math_expressions(text, name))
 
 
 def audit(root: Path = ROOT) -> dict:
