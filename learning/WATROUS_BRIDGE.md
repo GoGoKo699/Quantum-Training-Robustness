@@ -38,7 +38,7 @@ f(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1,
 \qquad F(\rho,\sigma)=f(\rho,\sigma)^2.
 ```
 
-Thus for a pure projector, $`F(P,\rho)=\operatorname{Tr}(P\rho)`$, whereas $`f(P,\rho)=\sqrt{\operatorname{Tr}(P\rho)}`$. Watrous's fidelity monotonicity theorem, Theorem 3.27, applies to $`f`$; squaring preserves the inequality for nonnegative values. Losing this square changes a statistical coefficient.
+Thus for a pure projector, $`F(P,\rho)=\mathrm{Tr}(P\rho)`$, whereas $`f(P,\rho)=\sqrt{\mathrm{Tr}(P\rho)}`$. Watrous's fidelity monotonicity theorem, Theorem 3.27, applies to $`f`$; squaring preserves the inequality for nonnegative values. Losing this square changes a statistical coefficient.
 
 Haar infidelity $`R=R_H`$, entanglement infidelity $`1-F_e`$, training loss $`\epsilon_S`$, and state trace distance are different quantities. In this project,
 
@@ -73,7 +73,7 @@ For a physical channel, trace preservation converts the sum of squared output am
 \epsilon_S=\sum_a Q_S(K_a),
 \qquad
 R=\frac1{d+1}\sum_a\|K_a^0\|_F^2,
-\qquad K_a^0=K_a-\frac{\operatorname{Tr}K_a}{d}I.
+\qquad K_a^0=K_a-\frac{\mathrm{Tr}\,K_a}{d}I.
 ```
 
 The second identity follows by contracting the pure-state second moment
@@ -102,7 +102,7 @@ For $`|0\rangle,|+\rangle`$ on one qubit, take
 
 ```math
 L=\begin{pmatrix}0&1\\0&1\end{pmatrix},
-\qquad K_0=\operatorname{diag}(1,\sqrt{1-2t}).
+\qquad K_0=\mathrm{diag}(1,\sqrt{1-2t}).
 ```
 
 Both inputs identify the identity channel at zero error, but this family has
@@ -120,7 +120,7 @@ This is not ordinary amplitude damping alone: its dilation includes a conditiona
 
 The **overlap graph** joins training rays with nonzero inner product. With spanning, its connectivity gives the established exact-identification criterion. The **coordinate-support graph** instead starts from a basis extracted from the menu and asks which coordinates extra rays connect. Its connectivity detects a scalar common right-eigenoperator space and hence linear robustness. The two graphs answer different questions.
 
-A positive gap need not be large. The basis-plus-uniform-ray menu repairs the exponent but still has an optimized coefficient growing with dimension. [Optimal design](../science/optimal_design.md) proves that every weighted ensemble with $`d<N\le d^2`$ obeys
+A positive gap need not be large. The basis-plus-uniform-ray menu repairs the exponent but still has an optimized coefficient growing with dimension. [Optimal design](../science/optimal_design.md) proves that every weighted ensemble with $`d\lt N\le d^2`$ obeys
 
 ```math
 C_S\ge\frac{d(N-1)}{(d+1)(N-d)}.
@@ -162,7 +162,7 @@ Y_r=1-\prod_j(1-y_{jr}),
 
 where $`y_{jr}`$ is site $`j`$'s survival loss on local ray $`r`$. Haar risk still concerns the whole register, including entangled test inputs.
 
-Spreading the hidden qubit noise across the sites makes the global risk of order $`nt`$ while the two-direction survival loss is of order $`nt^2`$. Calibrating $`t`$ to $`\delta/n`$ produces the lower-bound signal of order $`\delta^2/n`$. The full proof controls constants uniformly for $`0<\delta\le1/8`$; it does not infer a uniform theorem from this heuristic expansion.
+Spreading the hidden qubit noise across the sites makes the global risk of order $`nt`$ while the two-direction survival loss is of order $`nt^2`$. Calibrating $`t`$ to $`\delta/n`$ produces the lower-bound signal of order $`\delta^2/n`$. The full proof controls constants uniformly for $`0\lt \delta\le1/8`$; it does not infer a uniform theorem from this heuristic expansion.
 
 Adding the third global input transfers the local linear inequality through the product formula. The [exact array theorem](../science/product_channels.md) yields optimal repetition orders
 

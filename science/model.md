@@ -25,7 +25,7 @@ This definition changes coordinates in the analysis. It supplies no physical acc
 The individual and mean training errors are survival infidelities:
 
 ```math
-e_i(\mathcal E)=1-\operatorname{Tr}[P_i\mathcal E(P_i)],
+e_i(\mathcal E)=1-\mathrm{Tr}[P_i\mathcal E(P_i)],
 \qquad
 \epsilon_S(\mathcal E)=\sum_i p_i e_i(\mathcal E).
 ```
@@ -42,7 +42,7 @@ This distribution includes entangled input states when the system is a composite
 For Kraus operators $`K_a`$ satisfying $`\sum_aK_a^\dagger K_a=I`$, the standard average-fidelity identity gives
 
 ```math
-F_e(\mathcal E)=\frac1{d^2}\sum_a|\operatorname{Tr}K_a|^2,
+F_e(\mathcal E)=\frac1{d^2}\sum_a|\mathrm{Tr}\,K_a|^2,
 \qquad
 R(\mathcal E)=\frac d{d+1}[1-F_e(\mathcal E)].
 ```
@@ -67,7 +67,7 @@ The form measures how strongly an operator moves the probe vectors out of their 
 These are common **right** eigenoperators. They need not be Hermitian or normal. Since adding a scalar multiple of $`I`$ leaves $`Q_S`$ unchanged, its relevant gap is
 
 ```math
-\mu_S=\min_{\operatorname{Tr}A=0,\ \|A\|_F=1}Q_S(A).
+\mu_S=\min_{\mathrm{Tr}\,A=0,\ \|A\|_F=1}Q_S(A).
 ```
 
 The full proof in [Robustness](robustness.md) establishes
@@ -76,7 +76,7 @@ The full proof in [Robustness](robustness.md) establishes
 \epsilon_S(\mathcal E)=\sum_aQ_S(K_a),
 \qquad
 R(\mathcal E)=\frac1{d+1}\sum_a
-\left\|K_a-\frac{\operatorname{Tr}K_a}{d}I\right\|_F^2.
+\left\|K_a-\frac{\mathrm{Tr}\,K_a}{d}I\right\|_F^2.
 ```
 
 Consequently, $`R\le C\epsilon_S`$ for every CPTP map if and only if $`\mathcal A_S=\mathbb CI`$. The optimal coefficient is
@@ -126,7 +126,7 @@ The statistical model is described and proved in [Certification](certification.m
 
 ## 5. Optimal design and scalable application
 
-For any $`d<N\le d^2`$ pure probes, even with arbitrary weights and imbalance,
+For any $`d\lt N\le d^2`$ pure probes, even with arbitrary weights and imbalance,
 
 ```math
 C_S\ge\frac{d(N-1)}{(d+1)(N-d)}.

@@ -18,7 +18,7 @@ Construct a graph with vertices $`1,\ldots,d`$. Join $`j`$ and $`k`$ if some ext
 
 ```math
 \mathcal A_S
-=\left\{B\operatorname{diag}(\lambda_1,\ldots,\lambda_d)B^{-1}:
+=\left\{B\mathrm{diag}(\lambda_1,\ldots,\lambda_d)B^{-1}:
 \lambda_j\text{ is constant on each component}\right\},
 \qquad
 \dim_{\mathbb C}\mathcal A_S=m.
@@ -111,7 +111,7 @@ Use the orthonormal complex operator basis $`(\sigma_x,\sigma_y,\sigma_z)/\sqrt2
 0&-i&1
 \end{pmatrix},
 \qquad
-\operatorname{spec}(Q_{S_2})=\left\{0,\frac14,\frac34\right\}.
+\mathrm{spec}(Q_{S_2})=\left\{0,\frac14,\frac34\right\}.
 ```
 
 The imaginary off-diagonal entries matter: restricting the minimization to Hermitian matrices would miss the zero direction.
@@ -126,7 +126,7 @@ Add $`|1\rangle`$ and use equal weights on the three rays. The corresponding mat
 0&-i&1
 \end{pmatrix},
 \qquad
-\operatorname{spec}(Q_{S_3})
+\mathrm{spec}(Q_{S_3})
 =\left\{\frac{2-\sqrt2}{6},\frac13,
 \frac{2+\sqrt2}{6}\right\}.
 ```
@@ -209,7 +209,7 @@ The formula establishes a sharp small-error exponent for each fixed dimension. T
 
 ## The full basis plus one uniform ray
 
-Consider $`S_+=\{|0\rangle,\ldots,|d-1\rangle,u\}`$. Give each basis ray weight $`a=(1-b)/d`$ and the uniform ray weight $`b`$, with $`0<b<1`$. The basis-plus-superposition family is an established gate-characterization construction; see the discussion and references in [Mayer–Knill](../references/RELATED_WORK.md#mayer-knill-2018). The calculation here determines its full variance spectrum and optimal sampling weights.
+Consider $`S_+=\{|0\rangle,\ldots,|d-1\rangle,u\}`$. Give each basis ray weight $`a=(1-b)/d`$ and the uniform ray weight $`b`$, with $`0\lt b\lt 1`$. The basis-plus-superposition family is an established gate-characterization construction; see the discussion and references in [Mayer–Knill](../references/RELATED_WORK.md#mayer-knill-2018). The calculation here determines its full variance spectrum and optimal sampling weights.
 
 Let $`\Pi_{\mathrm{off}}`$ be the Hilbert–Schmidt orthogonal projection onto matrices whose computational-basis diagonal vanishes, and let
 
@@ -250,7 +250,7 @@ The off-diagonal space orthogonal to these planes has dimension $`(d-1)^2`$ and 
 | $`\lambda_-`$ | $`d-1`$ |
 | $`\lambda_+`$ | $`d-1`$ |
 
-For positive $`a,b`$, $`\lambda_-<a`$, so $`\mu_{S_+}=\lambda_-`$. At uniform weights, $`a=b=1/(d+1)`$,
+For positive $`a,b`$, $`\lambda_-\lt a`$, so $`\mu_{S_+}=\lambda_-`$. At uniform weights, $`a=b=1/(d+1)`$,
 
 ```math
 \mu_{S_+}

@@ -14,7 +14,7 @@ H_0:\mathcal V=\mathcal U,
 H_1:R_H(\mathcal U^\dagger\circ\mathcal V)\geq\delta,
 ```
 
-where $`\mathcal U(X)=UXU^\dagger`$ and $`R_H`$ is Haar average infidelity. The verifier must have both type-I and worst-case type-II error at most $`\alpha`$. We use $`0<\alpha\leq\alpha_*<1/2`$ and sufficiently small $`\delta>0`$. Haar infidelity is at most $`d/(d+1)`$, so there is no nonempty alternative class beyond that range.
+where $`\mathcal U(X)=UXU^\dagger`$ and $`R_H`$ is Haar average infidelity. The verifier must have both type-I and worst-case type-II error at most $`\alpha`$. We use $`0\lt \alpha\leq\alpha_*\lt 1/2`$ and sufficiently small $`\delta>0`$. Haar infidelity is at most $`d/(d+1)`$, so there is no nonempty alternative class beyond that range.
 
 The sample budget $`T`$ is a worst-case cap on the number of device calls. Early stopping is allowed within this cap. The theorem does not assert an optimum for an expected stopping-time budget.
 
@@ -36,7 +36,7 @@ If $`\mathcal V`$ is a learned hypothesis, it is fixed before these certificatio
 For $`P_i=|\psi_i\rangle\langle\psi_i|`$, let
 
 ```math
-e_i(\mathcal E)=1-\operatorname{Tr}\bigl[P_i\mathcal E(P_i)\bigr],
+e_i(\mathcal E)=1-\mathrm{Tr}\,\bigl[P_i\mathcal E(P_i)\bigr],
 \qquad
 \epsilon_S(\mathcal E)=\sum_i p_i e_i(\mathcal E),
 ```
@@ -54,7 +54,7 @@ For a fixed positive distribution $`p`$, denote its gap by $`\mu_S`$. For the me
 ```math
 \mu_*=
 \max_{p\in\Delta_N}
-\min_{\substack{\operatorname{Tr}A=0\\\|A\|_F=1}}Q_p(A).
+\min_{\substack{\mathrm{Tr}\,A=0\\\|A\|_F=1}}Q_p(A).
 ```
 
 Zero weights are permitted in this optimization. Positive approximations yield the same supremum if a positive distribution on the whole catalogue is required.
@@ -66,7 +66,7 @@ e_i(\mathcal E)=\sum_aQ_i(K_a),
 \qquad
 R_H(\mathcal E)
 =\frac1{d+1}\sum_a
-\left\|K_a-\frac{\operatorname{Tr}K_a}{d}I\right\|_F^2.
+\left\|K_a-\frac{\mathrm{Tr}\,K_a}{d}I\right\|_F^2.
 ```
 
 In particular, if $`\mu_*>0`$ and $`p`$ is an optimizing distribution, then
@@ -94,7 +94,7 @@ The same root-fidelity formula is used for positive subnormalized blocks.
 ```math
 F(\rho_i,\sigma_i)\geq1-b
 \qquad\text{for every }i,
-\qquad 0\leq b<1.
+\qquad 0\leq b\lt 1.
 ```
 
 Every allowed protocol with at most $`T`$ device calls has final states satisfying
@@ -120,7 +120,7 @@ Every common instrument or subsequent quantum processing can only increase fidel
 
 The conditional-independence step is the precise point where the fresh-input restriction is used. Coherent control of the label, or an input entangled with retained memory, does not have the displayed cq product-block form.
 
-**Corollary 2, testing lower bound.** If both errors of a final binary test are at most $`\alpha<1/2`$, then
+**Corollary 2, testing lower bound.** If both errors of a final binary test are at most $`\alpha\lt 1/2`$, then
 
 ```math
 T\geq
@@ -140,10 +140,10 @@ Let $`\mathcal H_0`$ be the complex Hilbert space of traceless $`d\times d`$ ope
 \begin{aligned}
 \mu_*
 &=\max_{p\in\Delta_N}
-   \min_{\substack{Z\succeq0\\\operatorname{Tr}_{\mathcal H_0}Z=1}}
-   \sum_i p_i\operatorname{Tr}_{\mathcal H_0}(\mathsf Q_iZ)\\
-&=\min_{\substack{Z\succeq0\\\operatorname{Tr}_{\mathcal H_0}Z=1}}
-   \max_i\operatorname{Tr}_{\mathcal H_0}(\mathsf Q_iZ).
+   \min_{\substack{Z\succeq0\\\mathrm{Tr}_{\mathcal H_0}Z=1}}
+   \sum_i p_i\mathrm{Tr}_{\mathcal H_0}(\mathsf Q_iZ)\\
+&=\min_{\substack{Z\succeq0\\\mathrm{Tr}_{\mathcal H_0}Z=1}}
+   \max_i\mathrm{Tr}_{\mathcal H_0}(\mathsf Q_iZ).
 \end{aligned}
 ```
 
@@ -154,7 +154,7 @@ Choose a minimizing $`Z`$ and factor it as
 ```math
 Z=\sum_a|L_a\rangle\!\rangle\langle\!\langle L_a|,
 \qquad
-\operatorname{Tr}L_a=0,
+\mathrm{Tr}\,L_a=0,
 \qquad
 \sum_a\|L_a\|_F^2=1.
 ```
@@ -163,7 +163,7 @@ The factorization may use at most $`d^2-1`$ terms, obtained from the spectral de
 
 ```math
 \sum_aQ_i(L_a)
-=\operatorname{Tr}_{\mathcal H_0}(\mathsf Q_iZ)
+=\mathrm{Tr}_{\mathcal H_0}(\mathsf Q_iZ)
 \leq\mu_*.
 ```
 
@@ -197,7 +197,7 @@ Since every $`L_a`$ is traceless, its Haar risk satisfies the exact identity
 R_H(\mathcal E_t)
 =\frac{t}{d+1}
  +\frac1{d+1}
-  \left\|K_0(t)-\frac{\operatorname{Tr}K_0(t)}{d}I\right\|_F^2
+  \left\|K_0(t)-\frac{\mathrm{Tr}\,K_0(t)}{d}I\right\|_F^2
 \geq\frac{t}{d+1}.
 ```
 
@@ -216,13 +216,13 @@ The residual is uniformly quadratic. Scalar-shift invariance of $`Q_i`$ and spec
 Q_i(K_0(t))
 &=Q_i(K_0(t)-I)\\
 &\leq\|K_0(t)-I\|_F^2\\
-&\leq\frac{t^2\operatorname{Tr}B^2}
+&\leq\frac{t^2\mathrm{Tr}\,B^2}
              {(1+\sqrt{1-t})^2}\\
 &\leq t^2.
 \end{aligned}
 ```
 
-For the penultimate inequality, diagonalize $`B`$ and use $`1-\sqrt{1-t\lambda}=t\lambda/(1+\sqrt{1-t\lambda})`$ for each $`0\leq\lambda\leq1`$. The final inequality uses $`\operatorname{Tr}B^2\leq(\operatorname{Tr}B)^2=1`$.
+For the penultimate inequality, diagonalize $`B`$ and use $`1-\sqrt{1-t\lambda}=t\lambda/(1+\sqrt{1-t\lambda})`$ for each $`0\leq\lambda\leq1`$. The final inequality uses $`\mathrm{Tr}\,B^2\leq(\mathrm{Tr}\,B)^2=1`$.
 
 Thus one physical channel simultaneously satisfies
 
@@ -244,7 +244,7 @@ c=(d+1)\mu_*,
 b_\delta=c\delta+(d+1)^2\delta^2.
 ```
 
-Let $`T_{\rm opt}(\delta,\alpha)`$ be the smallest worst-case call cap among all allowed verifiers. Whenever $`0<\delta\leq1/(d+1)`$ and $`b_\delta<1`$,
+Let $`T_{\rm opt}(\delta,\alpha)`$ be the smallest worst-case call cap among all allowed verifiers. Whenever $`0\lt \delta\leq1/(d+1)`$ and $`b_\delta\lt 1`$,
 
 ```math
 \boxed{
@@ -292,7 +292,7 @@ and
 
 The ceiling contributes at most $`\delta/\log(1/\alpha)`$ after normalization. The two sides of the finite-sample sandwich therefore have the same joint limit.
 
-At fixed $`\alpha<1/2`$, that argument gives the controlled bracket
+At fixed $`\alpha\lt 1/2`$, that argument gives the controlled bracket
 
 ```math
 \frac{\log[1/(4\alpha(1-\alpha))]}{c}
@@ -311,7 +311,7 @@ It does not identify an exact coefficient at fixed confidence for arbitrary two-
 
 All these coefficient statements keep $`d`$ and $`S`$ fixed. A sufficient onset condition for the displayed quadratic remainder to be negligible compared with its linear term is $`\delta\ll\mu_* /(d+1)`$. No joint dimension-and-precision uniformity follows from this expansion. The separate [product-channel theorem](product_channels.md) establishes its own dimension-dependent and uniform-in-array-size statements.
 
-Combining Theorem 3 with the [support theorem](optimal_design.md) gives an all-strategy constraint. For a menu with $`\mu_*>0`$ and $`d<N\leq d^2`$,
+Combining Theorem 3 with the [support theorem](optimal_design.md) gives an all-strategy constraint. For a menu with $`\mu_*>0`$ and $`d\lt N\leq d^2`$,
 
 ```math
 \lim_{\substack{\delta\to0\\\alpha\to0}}
@@ -331,7 +331,7 @@ The overlap graph of the menu joins rays with nonzero inner product. The [geomet
 \text{ for every }i\}.
 ```
 
-For fixed $`d,S`$ and $`0<\alpha\leq\alpha_*<1/2`$, the optimal precision orders are
+For fixed $`d,S`$ and $`0\lt \alpha\leq\alpha_*\lt 1/2`$, the optimal precision orders are
 
 | Geometry of the available rays | Optimal sample order as $`\delta\to0`$ |
 |---|---:|
@@ -374,7 +374,7 @@ T\leq
 =O_{d,S}\bigl(\delta^{-2}\log(1/\alpha)\bigr).
 ```
 
-For the third row, there is a nonscalar unitary $`W`$ fixing every available ray as a density operator. If the rays do not span, choose different phases on their span and its orthogonal complement. If the overlap graph is disconnected, its component spans are mutually orthogonal, and different phases can be assigned to those spans. Such a unitary has a strictly positive Haar risk $`r_W`$ and produces exactly the same output as the identity on every allowed input. Every allowed adaptive experiment has identical distributions under these hypotheses. Thus no test with both errors below $`1/2`$ is possible for $`0<\delta\leq r_W`$.
+For the third row, there is a nonscalar unitary $`W`$ fixing every available ray as a density operator. If the rays do not span, choose different phases on their span and its orthogonal complement. If the overlap graph is disconnected, its component spans are mutually orthogonal, and different phases can be assigned to those spans. Such a unitary has a strictly positive Haar risk $`r_W`$ and produces exactly the same output as the identity on every allowed input. Every allowed adaptive experiment has identical distributions under these hypotheses. Thus no test with both errors below $`1/2`$ is possible for $`0\lt \delta\leq r_W`$.
 
 The constants in the first two rows can depend on the menu's conditioning, its fixed positive weights, and dimension. This is a classification of precision dependence for a fixed experiment, not a universal dimension bound.
 
@@ -383,10 +383,10 @@ The constants in the first two rows can depend on the menu's conditioning, its f
 Suppose the exact binary target-output projectors are unavailable, but each trial supplies one fresh trusted copy of the pure target output $`\tau_i=UP_iU^\dagger`$. A SWAP comparison between $`\sigma_i=\mathcal V(P_i)`$ and $`\tau_i`$ measures the antisymmetric outcome with probability
 
 ```math
-\operatorname{Tr}\left[
+\mathrm{Tr}\,\left[
 \frac{I-\mathbb F}{2}(\sigma_i\otimes\tau_i)
 \right]
-=\frac{1-\operatorname{Tr}(\sigma_i\tau_i)}2
+=\frac{1-\mathrm{Tr}(\sigma_i\tau_i)}2
 =\frac{e_i}{2}.
 ```
 
@@ -415,8 +415,8 @@ Perfect completeness is a useful boundary condition, but the precision orders al
 H_{\rm good}:q\leq\theta m,
 \qquad
 H_{\rm bad}:q\geq m,
-\qquad 0\leq\theta<1,
-\qquad 0<m\leq1.
+\qquad 0\leq\theta\lt 1,
+\qquad 0\lt m\leq1.
 ```
 
 Use independent trials and reject when their rejection frequency exceeds $`(1+\theta)m/2`$. A binomial lower-tail bound at $`q=m`$ gives an error at most
@@ -445,7 +445,7 @@ Consider the depolarizing channel whose survival infidelity on every pure input 
 ```math
 \mathcal D_r(X)
 =\left(1-\frac{dr}{d-1}\right)X
- +\frac{r}{d-1}\operatorname{Tr}(X)I,
+ +\frac{r}{d-1}\mathrm{Tr}(X)I,
 \qquad 0\leq r\leq\frac{d-1}{d}.
 ```
 
@@ -456,7 +456,7 @@ Its Haar infidelity is also $`r`$, and
 =(1-r)P+\frac{r}{d-1}(I-P).
 ```
 
-Fix $`0<r_0<(d-1)/d`$ and compare $`\mathcal D_{r_0}`$ with $`\mathcal D_{r_0+\delta}`$ for sufficiently small positive $`\delta`$. For every pure input their output fidelity is
+Fix $`0\lt r_0\lt (d-1)/d`$ and compare $`\mathcal D_{r_0}`$ with $`\mathcal D_{r_0+\delta}`$ for sufficiently small positive $`\delta`$. For every pure input their output fidelity is
 
 ```math
 \begin{aligned}

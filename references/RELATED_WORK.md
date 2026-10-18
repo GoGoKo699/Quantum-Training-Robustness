@@ -94,8 +94,8 @@ The elementary block-fidelity proof in this project is a specialization of that 
 [Barnett, Chefles, and Jex (2003)](https://doi.org/10.1016/S0375-9601(02)01602-X), *Comparison of two unknown pure quantum states*, develop universal unambiguous state comparison. The antisymmetric test and the swap identity are established tools. With a trusted pure target-output copy $`P`$ and device output $`\rho`$, the rejection probability is
 
 ```math
-\operatorname{Tr}\!\left[\frac{I-\mathrm{SWAP}}2(\rho\otimes P)\right]
-=\frac{1-\operatorname{Tr}(\rho P)}2.
+\mathrm{Tr}\,\!\left[\frac{I-\mathrm{SWAP}}2(\rho\otimes P)\right]
+=\frac{1-\mathrm{Tr}(\rho P)}2.
 ```
 
 The extension to a mixed device output follows by linearity. Each trial consumes one device use and one fresh trusted target copy. Such references preserve the precision exponents with a constant overhead; noisy or untrusted references are a different access model.
