@@ -9,7 +9,7 @@ The dimension, loss functions, and access assumptions are fixed in [the model](m
 Write $`P_i=|\psi_i\rangle\langle\psi_i|`$, with normalized $`\psi_i`$, and define
 
 ```math
-e_i(\mathcal E)=1-\operatorname{Tr}[P_i\mathcal E(P_i)],
+e_i(\mathcal E)=1-\mathrm{Tr}[P_i\mathcal E(P_i)],
 \qquad
 \epsilon_S(\mathcal E)=\sum_{i=1}^N p_i e_i(\mathcal E),
 \qquad
@@ -51,7 +51,7 @@ The Haar second moment gives
 
 ```math
 \int |\langle\psi|A|\psi\rangle|^2\,d\psi
-=\frac{\|A\|_F^2+|\operatorname{Tr}A|^2}{d(d+1)}.
+=\frac{\|A\|_F^2+|\mathrm{Tr}\,A|^2}{d(d+1)}.
 ```
 
 Here $`\|\cdot\|_F`$ is the Frobenius norm. Summing this identity over the Kraus operators and using $`\sum_a\|K_a\|_F^2=d`$ yields
@@ -60,14 +60,14 @@ Here $`\|\cdot\|_F`$ is the Frobenius norm. Summing this identity over the Kraus
 \boxed{
 R(\mathcal E)
 =\frac{1}{d+1}\sum_a
-\left\|K_a-\frac{\operatorname{Tr}K_a}{d}I\right\|_F^2.
+\left\|K_a-\frac{\mathrm{Tr}\,K_a}{d}I\right\|_F^2.
 }
 ```
 
 Equivalently, if $`F_e`$ is entanglement fidelity with respect to the identity,
 
 ```math
-F_e(\mathcal E)=\frac{1}{d^2}\sum_a|\operatorname{Tr}K_a|^2,
+F_e(\mathcal E)=\frac{1}{d^2}\sum_a|\mathrm{Tr}\,K_a|^2,
 \qquad
 R(\mathcal E)=\frac{d}{d+1}[1-F_e(\mathcal E)].
 ```
@@ -83,7 +83,7 @@ Define the common right-eigenoperator space and its gap by
 =\{A:A\psi_i\in\mathbb C\psi_i\ \text{for every }i\},
 \qquad
 \mu_S
-=\min_{\substack{\operatorname{Tr}A=0\\\|A\|_F=1}}Q_S(A).
+=\min_{\substack{\mathrm{Tr}\,A=0\\\|A\|_F=1}}Q_S(A).
 ```
 
 Positivity of every weight implies $`\ker Q_S=\mathcal A_S`$. The scalar matrices always belong to this kernel. Compactness of the unit sphere in the traceless subspace therefore gives
@@ -108,7 +108,7 @@ This is the optimal coefficient of a global linear inequality. Its sharpness can
 
 ### Proof of the upper bound
 
-Let $`K_a^0=K_a-\operatorname{Tr}(K_a)I/d`$. Scalar-shift invariance and the definition of the gap give
+Let $`K_a^0=K_a-\mathrm{Tr}(K_a)I/d`$. Scalar-shift invariance and the definition of the gap give
 
 ```math
 \epsilon_S(\mathcal E)
@@ -145,7 +145,7 @@ The preceding identities then give
 &=tQ_S(L)+\frac{t^2}{4}Q_S(B)+O(t^3),\\
 R(\mathcal E_t)
 &=\frac{t}{d+1}
- \left\|L-\frac{\operatorname{Tr}L}{d}I\right\|_F^2+O(t^2).
+ \left\|L-\frac{\mathrm{Tr}\,L}{d}I\right\|_F^2+O(t^2).
 \end{aligned}
 ```
 
@@ -213,7 +213,7 @@ Assume spanning and overlap connectivity. Choose $`d`$ independent probes, relab
 ```math
 C_{\mathrm{MK}}
 =\frac{2}{d}\left[
-\frac{2}{d}\sum_{1\leq l<k\leq d}W_{kl}^2
+\frac{2}{d}\sum_{1\leq l\lt k\leq d}W_{kl}^2
 +\sum_{k=1}^d\sqrt{(G_B^{-1})_{kk}}
 \right].
 ```
@@ -267,7 +267,7 @@ Thus
 \beta_L=\frac14Q_S(L^\dagger L)>0,
 \qquad
 a_L=\frac{1}{d+1}
-\left\|L-\frac{\operatorname{Tr}L}{d}I\right\|_F^2>0.
+\left\|L-\frac{\mathrm{Tr}\,L}{d}I\right\|_F^2>0.
 ```
 
 For the exact family above,
