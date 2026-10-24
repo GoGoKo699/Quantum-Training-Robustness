@@ -42,7 +42,7 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Central question:** How can one mathematical operation include both unitary evolution and dissipation?
 
-**Understanding target:** Explain complete positivity, trace preservation, and a Kraus representation. Use the condition that the sum of the squared Kraus operators is the identity to recognize a physical channel.
+**Understanding target:** Explain complete positivity, trace preservation, and a Kraus representation. Use the condition that the sum of the Kraus adjoint-products $`K_a^\dagger K_a`$ is the identity to recognize a physical channel.
 
 **Dependencies and story role:** M01, M02. Define the admissible hypothesis class.
 
