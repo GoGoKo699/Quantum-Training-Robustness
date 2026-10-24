@@ -72,6 +72,60 @@ def validate_capture(item: dict, expected: int) -> None:
         raise AssertionError('At least one source expression failed hosted rendering')
 
 
+def collect_source_pages(root: Path, ref: str) -> list[tuple[str, int, str]]:
+    """Bind the complete local Markdown set to its immutable Git source."""
+    tree = subprocess.check_output(
+        ['git', 'ls-tree', '-rz', '--full-tree', ref], cwd=root)
+    committed = {}
+    for entry in tree.split(b'\0'):
+        if not entry:
+            continue
+        metadata, raw_path = entry.split(b'\t', 1)
+        mode, kind, blob = metadata.decode().split()
+        path = raw_path.decode('utf-8')
+        if path.endswith('.md'):
+            if kind != 'blob' or mode not in {'100644', '100755'}:
+                raise AssertionError(f'Unsupported Markdown source: {path}')
+            committed[path] = blob
+    local = {path.relative_to(root).as_posix() for path in root.rglob('*.md')
+             if '.git' not in path.relative_to(root).parts
+             and 'review-output' not in path.relative_to(root).parts}
+    if local != set(committed):
+        raise AssertionError(
+            f'Markdown source set differs from {ref}: '
+            f'missing={sorted(set(committed) - local)}, '
+            f'added={sorted(local - set(committed))}')
+    pages = []
+    for filename, blob in sorted(committed.items()):
+        data = (root / filename).read_bytes()
+        actual = hashlib.sha1(f'blob {len(data)}\0'.encode() + data).hexdigest()
+        if actual != blob:
+            raise AssertionError(f'Markdown source differs from {ref}: {filename}')
+        expected = len(math_expressions(data.decode('utf-8'), filename))
+        if expected:
+            pages.append((filename, expected, blob))
+    if not pages:
+        raise AssertionError('No mathematical source pages found')
+    return pages
+
+
+def validate_report(report: dict) -> None:
+    """Reject interrupted runs and omissions, even when captured pages pass."""
+    manifest = report.get('source_manifest', [])
+    pages = report.get('pages', [])
+    if report.get('run_status') != 'complete' or not manifest:
+        raise AssertionError('The hosted capture run is incomplete')
+    if [p.get('path') for p in pages] != [p['path'] for p in manifest]:
+        raise AssertionError('The hosted report does not cover its source manifest')
+    for item, source in zip(pages, manifest):
+        for key in ['source_blob', 'expected_math']:
+            if item.get(key) != source[key]:
+                raise AssertionError(f'Hosted report source mismatch: {source["path"]}')
+        if item.get('status') != 'captured':
+            raise AssertionError(f'Hosted capture failed: {source["path"]}')
+        validate_capture(item, source['expected_math'])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', default='GoGoKo699/Quantum-Training-Robustness')
@@ -84,22 +138,20 @@ def main() -> int:
     ref = args.ref or head
     if not re.fullmatch(r'[0-9a-f]{40}', ref) or ref != head:
         parser.error('--ref must equal the full immutable SHA of the checked-out source')
-    pages = []
-    for path in sorted(ROOT.rglob('*.md')):
-        if '.git' in path.parts or 'review-output' in path.parts:
-            continue
-        data = path.read_bytes()
-        expected = len(math_expressions(data.decode('utf-8'), str(path.relative_to(ROOT))))
-        if expected:
-            blob = hashlib.sha1(f'blob {len(data)}\0'.encode() + data).hexdigest()
-            pages.append((path.relative_to(ROOT).as_posix(), expected, blob))
-    if not pages:
-        raise AssertionError('No mathematical source pages found')
     args.output.mkdir(parents=True, exist_ok=True)
     report = {'repository': args.repo, 'revision': ref,
-              'playwright': importlib.metadata.version('playwright'), 'pages': [],
+              'run_status': 'in_progress', 'source_manifest': [], 'pages': [],
               'viewport': {'width': 1440, 'height': 1100},
               'scope': 'Actual public GitHub DOM and screenshots; visual review remains required.'}
+    report_path = args.output / 'report.json'
+    # Invalidate any earlier report before source validation or browser startup.
+    report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
+    pages = collect_source_pages(ROOT, ref)
+    report['source_manifest'] = [
+        {'path': filename, 'expected_math': expected, 'source_blob': blob}
+        for filename, expected, blob in pages]
+    report['playwright'] = importlib.metadata.version('playwright')
+    report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
@@ -145,12 +197,20 @@ def main() -> int:
                     pass
             finally:
                 report['pages'].append(item)
-                (args.output / 'report.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+                report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
                 print(json.dumps({k: v for k, v in item.items() if k not in ['headings', 'overflowing_hosts']}), flush=True)
                 page.close()
                 time.sleep(1)
         browser.close()
-    return int(any(p['status'] != 'captured' for p in report['pages']))
+    report['run_status'] = 'complete'
+    try:
+        validate_report(report)
+        report['passed'] = True
+    except AssertionError as exc:
+        report['passed'] = False
+        report['failure'] = str(exc)
+    report_path.write_text(json.dumps(report, indent=2), encoding='utf-8')
+    return int(not report['passed'])
 
 
 if __name__ == '__main__':

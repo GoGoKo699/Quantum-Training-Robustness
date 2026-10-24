@@ -130,6 +130,8 @@ T\geq
 
 Indeed, under the null the acceptance probability is at least $`1-\alpha`$, while under the alternative it is at most $`\alpha`$. The fidelity of these two binary distributions is at most $`4\alpha(1-\alpha)`$. Measurement cannot decrease fidelity, so it is at least the premeasurement lower bound $`(1-b)^T`$. If the null must be accepted with probability one, the binary fidelity is at most $`\alpha`$, strengthening the numerator to $`\log(1/\alpha)`$.
 
+When $`b=0`$, the two devices give identical outputs on every allowed input. No finite test can then have both errors below $`1/2`$; the displayed lower bound is interpreted as $`+\infty`$.
+
 This lemma and converse are standard cq fidelity machinery, in the form needed here; see [Wilde et al.](../references/RELATED_WORK.md#wilde-et-al-2020). They are not an independent novelty claim.
 
 ## Fixed-menu minimax duality

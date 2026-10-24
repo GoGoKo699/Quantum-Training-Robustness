@@ -8,9 +8,16 @@ Fixtures validate detection behavior, not scientific claims.
 from __future__ import annotations
 
 import os
+import json
+from pathlib import Path
+import subprocess
+import tempfile
+from types import ModuleType
 import unittest
+from unittest.mock import MagicMock, patch
 
-from capture_hosted import DOM_SCAN, validate_capture
+import capture_hosted
+from capture_hosted import DOM_SCAN, collect_source_pages, validate_capture, validate_report
 from check_structure import math_expressions
 
 
@@ -81,6 +88,98 @@ class ReportTests(unittest.TestCase):
             value[field] = bad
             with self.subTest(field=field), self.assertRaises(AssertionError):
                 validate_capture(value, 2)
+
+
+class ProvenanceTests(unittest.TestCase):
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        self.root = Path(self.directory.name)
+        self.git('init', '-q')
+        (self.root / 'README.md').write_text('# Fixture\n$`x`$\n', encoding='utf-8')
+        (self.root / 'science').mkdir()
+        (self.root / 'science/proof.md').write_text('# Proof\n$`y`$\n', encoding='utf-8')
+        self.git('add', '.')
+        self.git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid',
+                 '-c', 'commit.gpgsign=false', 'commit', '-qm', 'Fixture')
+        self.ref = self.git('rev-parse', 'HEAD')
+
+    def git(self, *args):
+        return subprocess.check_output(['git', *args], cwd=self.root, text=True).strip()
+
+    def test_clean_manifest_matches_committed_blobs(self):
+        pages = collect_source_pages(self.root, self.ref)
+        self.assertEqual([(p, n) for p, n, _ in pages],
+                         [('README.md', 1), ('science/proof.md', 1)])
+        for path, _, blob in pages:
+            self.assertEqual(blob, self.git('rev-parse', f'{self.ref}:{path}'))
+
+    def test_same_count_equation_edit_rejected(self):
+        (self.root / 'README.md').write_text('# Fixture\n$`2*x`$\n', encoding='utf-8')
+        with self.assertRaisesRegex(AssertionError, 'source differs'):
+            collect_source_pages(self.root, self.ref)
+
+    def test_deleted_math_page_rejected(self):
+        (self.root / 'science/proof.md').unlink()
+        with self.assertRaisesRegex(AssertionError, 'missing='):
+            collect_source_pages(self.root, self.ref)
+
+    def test_uncommitted_math_page_rejected(self):
+        (self.root / 'science/new.md').write_text('$`z`$\n', encoding='utf-8')
+        with self.assertRaisesRegex(AssertionError, 'added='):
+            collect_source_pages(self.root, self.ref)
+
+    def test_browser_startup_failure_invalidates_previous_report(self):
+        output = self.root / 'review-output'
+        output.mkdir()
+        report_path = output / 'report.json'
+        report_path.write_text('{"run_status":"complete","passed":true}', encoding='utf-8')
+        module = ModuleType('playwright.sync_api')
+        module.sync_playwright = MagicMock()
+        module.sync_playwright.return_value.__enter__.return_value.chromium.launch.side_effect = RuntimeError('Browser unavailable')
+        with patch.object(capture_hosted, 'ROOT', self.root), \
+             patch('sys.argv', ['capture_hosted.py', '--ref', self.ref, '--output', str(output)]), \
+             patch('importlib.metadata.version', return_value='fixture'), \
+             patch.dict('sys.modules', {'playwright': ModuleType('playwright'),
+                                        'playwright.sync_api': module}), \
+             self.assertRaisesRegex(RuntimeError, 'Browser unavailable'):
+            capture_hosted.main()
+        report = json.loads(report_path.read_text(encoding='utf-8'))
+        self.assertEqual(report['run_status'], 'in_progress')
+        self.assertEqual(len(report['source_manifest']), 2)
+        self.assertEqual(report['pages'], [])
+        self.assertNotIn('passed', report)
+
+
+class CompleteReportTests(unittest.TestCase):
+    def good(self):
+        manifest = [{'path': p, 'source_blob': 'a' * 40, 'expected_math': 2}
+                    for p in ['README.md', 'science/proof.md']]
+        pages = [dict(source, http_status=200, text_length=300, math_hosts=2,
+                      rendered_hosts=2, failed_hosts=[], errors=[], status='captured')
+                 for source in manifest]
+        return dict(run_status='complete', source_manifest=manifest, pages=pages)
+
+    def test_full_report_accepted(self):
+        validate_report(self.good())
+
+    def test_successful_subset_rejected(self):
+        value = self.good()
+        value['pages'].pop()
+        with self.assertRaisesRegex(AssertionError, 'source manifest'):
+            validate_report(value)
+
+    def test_interrupted_run_rejected(self):
+        value = self.good()
+        value['run_status'] = 'in_progress'
+        with self.assertRaisesRegex(AssertionError, 'incomplete'):
+            validate_report(value)
+
+    def test_wrong_blob_rejected(self):
+        value = self.good()
+        value['pages'][0]['source_blob'] = 'b' * 40
+        with self.assertRaisesRegex(AssertionError, 'source mismatch'):
+            validate_report(value)
 
 
 @unittest.skipUnless(os.environ.get('QTR_BROWSER_TESTS') == '1', 'optional Chromium DOM fixtures')

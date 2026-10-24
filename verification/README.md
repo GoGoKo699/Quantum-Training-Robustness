@@ -67,7 +67,7 @@ python3 verification/check_structure.py
 python3 verification/test_review.py -v
 ```
 
-The [regression fixtures](test_review.py) check the source guards, complete-versus-partial capture reports, and error-message handling. Without the optional browser, 14 source/report tests run and three DOM fixtures are explicitly skipped. With Chromium installed, run all 17:
+The [regression fixtures](test_review.py) check the source guards, committed-source provenance, complete-versus-partial capture reports, startup failure, and error-message handling. Without the optional browser, 23 source/report tests run and three DOM fixtures are explicitly skipped. With Chromium installed, run all 26:
 
 ```bash
 QTR_BROWSER_TESTS=1 python3 verification/test_review.py -v
@@ -79,7 +79,9 @@ Printed counts refer to the checked tree. These tests do not establish that the 
 
 ## Actual hosted mathematical rendering
 
-The optional [capture script](capture_hosted.py) opens every Markdown page containing mathematics at the full SHA of the checked-out commit. This includes the README, both learning pages, all scientific pages, related work, and this verification guide. It saves full-page screenshots, hosted HTML and text, heading coordinates, source blob hashes, and a JSON report. It does not render local Markdown as a substitute for the hosted page.
+The optional [capture script](capture_hosted.py) opens every Markdown page containing mathematics at the full SHA of the checked-out commit. This includes the README, both learning pages, all scientific pages, related work, and this verification guide. Before capture, it derives the Markdown inventory from that commit and verifies every local document against its committed blob. Changed, missing, or added Markdown sources require a new committed revision. It saves full-page screenshots, hosted HTML and text, heading coordinates, source blob hashes, and a JSON report. It does not render local Markdown as a substitute for the hosted page.
+
+The report is initialized before source validation or browser startup and records the full planned page manifest before capture. It remains marked `in_progress` if execution is interrupted. A completed report is checked against the entire manifest, including each page's source hash and expression count; success requires `run_status: complete` and `passed: true`. A successful subset of pages cannot establish a successful run. A newly started run replaces any previous report in the output directory.
 
 For each page, the expected expression count is obtained from the checked source. Every expression must have a successful mathematical host. The scan traverses open shadow roots, detects GitHub macro-error boxes and other known renderer errors, and rejects incomplete or mismatched counts. It records horizontal overflow for visual inspection rather than treating a legitimate scrollable display as an automatic failure.
 
