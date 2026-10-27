@@ -1,0 +1,8 @@
+{
+  "source": "learning/source/Quantum_Training_Robustness_Report.tex",
+  "pdf": "learning/report/Quantum_Training_Robustness_Report.pdf",
+  "source_sha256": "aa3c7c643cbeba0d1173c4aa5e15b6314de0519da48cf0246330eeddc654ec1f",
+  "pdf_sha256": "f0ce5cee8d10d023d01c88d0c80bed8804013f5ef43bba592f3174608fd1c51b",
+  "pages": 30,
+  "engine": "pdfTeX 3.141592653-2.6-1.40.28 (TeX Live 2025)"
+}

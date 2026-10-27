@@ -4,6 +4,8 @@ The central question is whether a finite pure-state training menu controls the e
 
 ## Read the argument
 
+For a continuous introduction with worked examples, start with the [explanatory report](../learning/report/Quantum_Training_Robustness_Report.pdf). The topic pages below give the canonical statements, proofs, and source attribution.
+
 | Page | Question answered | Main dependencies |
 |---|---|---|
 | [Model](model.md) | What is observed, what is the test risk, and which physical resources are supplied? | Finite-dimensional channels, pure states, and average fidelity. |

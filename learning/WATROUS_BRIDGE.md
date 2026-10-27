@@ -1,6 +1,8 @@
 # From Watrous to quantum training robustness
 
-[Repository](../README.md) · [30 milestones](MILESTONES.md) · [Scientific map](../science/README.md)
+[Repository](../README.md) · [Explanatory report](report/Quantum_Training_Robustness_Report.pdf) · [30 milestones](MILESTONES.md) · [Scientific map](../science/README.md)
+
+The [explanatory report](report/Quantum_Training_Robustness_Report.pdf) introduces the experiment through qubit examples and develops the argument continuously. Use this bridge alongside it for textbook foundations, convention translations, and attribution routes.
 
 ## The single educational anchor
 

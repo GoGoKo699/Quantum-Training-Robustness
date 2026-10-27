@@ -12,6 +12,8 @@ The target is unitary; the hypothesis is an arbitrary CPTP channel unless a page
 
 ## Learning route
 
+Start with the [explanatory report](learning/report/Quantum_Training_Robustness_Report.pdf) for a continuous introduction, qubit examples, proof roadmaps, and worked certification recipes. The topic pages below remain the canonical scientific and attribution routes.
+
 The single educational anchor is John Watrous, The Theory of Quantum Information (2018). Section pointers use the author's standard-layout pre-publication version. Research papers cited for attribution are not additional educational anchors.
 
 - [Watrous bridge](learning/WATROUS_BRIDGE.md): Source sections, convention translations, and the missing connections from foundations to this project.
@@ -38,6 +40,7 @@ The learning map is independent of individual progress. Explain the science thro
 - [Related work](references/RELATED_WORK.md): Established ingredients and the extent of the extensions.
 - [BibTeX references](references/references.bib): Primary-source bibliography.
 - [Verification guide](verification/README.md): Commands, recorded environment, seed, tolerances, and limits of finite checks.
+- [Report reproduction](verification/README.md#explanatory-report): Matching LaTeX source, stored-pair integrity, and a fresh TeX Live 2025 build.
 - [NumPy checks](verification/check_math.py): Explicit matrices, spectra, channels, and product formulas.
 - [Dependency](verification/requirements.txt): NumPy version range.
 - [License](LICENSE): MIT license.
