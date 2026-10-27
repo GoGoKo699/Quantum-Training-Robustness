@@ -182,7 +182,13 @@ def main() -> int:
                     if item['errors'] or item['rendered_hosts'] == expected:
                         break
                 page.evaluate('document.fonts.ready.then(() => true)')
-                page.evaluate('window.scrollTo(0,0)')
+                # GitHub may use smooth scrolling and update its sticky file
+                # toolbar on a later frame. Settle at the top before capturing
+                # so that toolbar cannot be frozen across an equation.
+                page.evaluate('window.scrollTo({top:0,left:0,behavior:"instant"})')
+                page.wait_for_function('window.scrollY === 0')
+                page.evaluate('new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
+                page.wait_for_timeout(300)
                 page.screenshot(path=str(args.output / f'{slug}.png'), full_page=True)
                 (args.output / f'{slug}.html').write_text(page.content(), encoding='utf-8')
                 (args.output / f'{slug}.txt').write_text(article.inner_text(), encoding='utf-8')
