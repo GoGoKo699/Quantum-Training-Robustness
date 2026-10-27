@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main, 'verification/**']
-    paths: ['**.md', 'llms.txt', 'references/**', 'verification/**', '.github/workflows/sanity.yml']
+    paths: ['**.md', 'llms.txt', 'references/**', 'learning/report/**', 'learning/source/**', 'verification/**', '.github/workflows/sanity.yml']
 
 permissions:
   contents: read
@@ -54,5 +54,37 @@ jobs:
         with:
           name: sanity-${{ github.sha }}
           path: review-output/
+          retention-days: 7
+          if-no-files-found: error
+
+  report:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.13.5'
+      - name: Record the report source revision
+        run: |
+          mkdir -p review-output/report
+          git rev-parse HEAD | tee review-output/report/revision.txt
+      - name: Check the stored report and negative fixtures
+        run: |
+          python -m pip install -r verification/requirements-report.txt
+          python verification/check_report.py --output-dir review-output/report/stored
+          python verification/test_report.py -v 2>&1 | tee review-output/report/fixtures.txt
+      - name: Install frozen TeX Live 2025
+        run: bash verification/install_report_tex.sh "$RUNNER_TEMP/report-texlive2025" 2>&1 | tee review-output/report/install.txt
+      - name: Build and verify the fresh report
+        run: python verification/check_report.py --build --engine "$RUNNER_TEMP/report-texlive2025/bin/x86_64-linux/pdflatex" | tee review-output/report/build.txt
+      - name: Retain fresh report evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: report-${{ github.sha }}
+          path: review-output/report/
           retention-days: 7
           if-no-files-found: error

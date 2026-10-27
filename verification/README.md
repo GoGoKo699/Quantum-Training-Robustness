@@ -67,7 +67,7 @@ python3 verification/check_structure.py
 python3 verification/test_review.py -v
 ```
 
-The [regression fixtures](test_review.py) check the source guards, committed-source provenance, complete-versus-partial capture reports, startup failure, and error-message handling. Without the optional browser, 23 source/report tests run and three DOM fixtures are explicitly skipped. With Chromium installed, run all 26:
+The [regression fixtures](test_review.py) check the source guards, committed-source provenance, complete-versus-partial capture reports, startup failure, and error-message handling. Without the optional browser, 23 source/capture-report tests run and three DOM fixtures are explicitly skipped. With Chromium installed, run all 26:
 
 ```bash
 QTR_BROWSER_TESTS=1 python3 verification/test_review.py -v
@@ -76,6 +76,37 @@ QTR_BROWSER_TESTS=1 python3 verification/test_review.py -v
 The browser fixtures include a GitHub macro-error box beside a successfully rendered expression and an error inside an open shadow root. A page must not pass merely because another equation rendered successfully.
 
 Printed counts refer to the checked tree. These tests do not establish that the prose teaches the intended concepts, that the equations are true, or that GitHub has rendered the current public pages correctly. Those require semantic and visual review.
+
+## Explanatory report
+
+The [report PDF](../learning/report/Quantum_Training_Robustness_Report.pdf) is paired with its self-contained [LaTeX source](../learning/source/Quantum_Training_Robustness_Report.tex). Figures and analytic curves are inline TikZ/PGFPlots. The [manifest](report-manifest.json) records the reviewed source/PDF hashes, 30-page length, and actual pdfLaTeX engine. It must be updated together with both artifacts after a reviewed report revision.
+
+Install the separate [PDF-check dependency](requirements-report.txt), then check the stored pair:
+
+```bash
+python3 -m pip install -r verification/requirements-report.txt
+python3 verification/check_report.py
+python3 verification/test_report.py -v
+```
+
+This verifies hashes, page count, and empty author/date metadata. It performs no compilation. The negative fixtures verify that changed source, a failing compiler, or missing fresh output cannot pass because a stored PDF exists.
+
+To require a fresh build, use **pdfLaTeX 1.40.28 from TeX Live 2025**:
+
+```bash
+python3 verification/check_report.py --build --engine /path/to/texlive2025/bin/x86_64-linux/pdflatex
+```
+
+The checker copies the source into a new directory under `review-output/report/`, compiles three times without shell escape, and requires both the fresh PDF and its corresponding final log. It rejects layout, glyph, reference, and package warnings, except the optional epstopdf shell-escape notice: this report has no EPS inputs. The fresh PDF must be byte-identical to the stored PDF. A failed build is a failed check; an existing PDF cannot replace missing fresh output. The result JSON is marked incomplete before checking starts; success requires `run_status: complete` and `passed: true`. Per-pass output and the final log remain beside it for inspection.
+
+Use the frozen final TeX Live 2025 distribution for reproduction; another TeX Live release or updated package set may produce different bytes. The [CI installer](install_report_tex.sh) verifies the frozen installer and package-database checksums before installing the required packages. To install into a new local directory and build:
+
+```bash
+bash verification/install_report_tex.sh "$PWD/../report-texlive2025"
+python3 verification/check_report.py --build --engine "$PWD/../report-texlive2025/bin/x86_64-linux/pdflatex"
+```
+
+Keep the toolchain outside the tracked source. The build is a source/output integrity check, not a proof check. The topic pages retain attribution and authoritative scientific statements. Two report symbols differ from the topic pages: `h(z)` is the scalar aggregation called `F(z)` in the product-channel proof, and `rho_S` is the mean state called `overline rho` in the nonunitality proof.
 
 ## Actual hosted mathematical rendering
 
@@ -93,4 +124,4 @@ python3 verification/capture_hosted.py --ref "$(git rev-parse HEAD)"
 
 The optional [browser dependency](requirements-browser.txt) is separate from the numerical suite. A network failure or an unrecognized renderer is a failed or incomplete capture, not evidence of a clean page. Successful capture still requires visual inspection of screenshots for clipping, table collisions, notation, and layout. The recorded viewport is 1440 by 1100 pixels; this is not a claim about every browser or screen size.
 
-The [repository audit workflow](../.github/workflows/sanity.yml) uses pinned action revisions, read-only contents permission, no secrets, and a 15-minute cap. It runs on manual dispatch and on relevant source, documentation, or verification changes to `main` or verification branches. Its explicit Bash configuration propagates failures through logged pipelines. The artifact contains only the checked public source archive, test output, and rendering diagnostics; it is retained for seven days. Workflow success is not a proof certificate or an automatic release action.
+The [repository audit workflow](../.github/workflows/sanity.yml) uses pinned action revisions, read-only contents permission, and no secrets. It runs on manual dispatch and on relevant source, documentation, report PDF/TeX, or verification changes to `main` or verification branches. Its explicit Bash configuration propagates failures through logged pipelines. The source/browser job has a 15-minute cap; the separate fresh-report job has a 20-minute cap and records its fresh PDF and final log. Artifacts contain only checked public sources, test/build output, and rendering diagnostics; they are retained for seven days. Workflow success is not a proof certificate or an automatic release action.

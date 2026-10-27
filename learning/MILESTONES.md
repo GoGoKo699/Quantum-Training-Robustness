@@ -1,6 +1,6 @@
 # Thirty milestones for quantum training robustness
 
-[Repository](../README.md) · [Watrous bridge](WATROUS_BRIDGE.md) · [Scientific map](../science/README.md)
+[Repository](../README.md) · [Explanatory report](report/Quantum_Training_Robustness_Report.pdf) · [Watrous bridge](WATROUS_BRIDGE.md) · [Scientific map](../science/README.md)
 
 This is a project-defined understanding map, independent of a particular reader's background or progress. Its single educational anchor is **Watrous, *The Theory of Quantum Information* (2018)**, using the author's standard-layout pre-publication version. The [source map and notation translation](WATROUS_BRIDGE.md#source-map) identify the relevant sections. Research-level attributions remain in [Related work](../references/RELATED_WORK.md).
 
