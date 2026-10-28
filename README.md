@@ -6,7 +6,7 @@ A finite set of pure inputs can identify a target unitary exactly while giving a
 
 The decisive object is the variance of an operator on the training rays. Linear control of Haar-average test infidelity holds exactly when the only operators that preserve every training ray as a right eigenvector are scalar multiples of the identity. The corresponding variance gap gives the **optimal global linear coefficient**. A nonscalar, nonnormal direction can instead hide first-order dissipative error behind second-order training loss.
 
-[Read the scientific argument](science/README.md) · [Learn through Watrous](learning/WATROUS_BRIDGE.md) · [Follow the 30 milestones](learning/MILESTONES.md) · [Understand the training and resource implications](science/interpretation.md) · [Compare with prior work](references/RELATED_WORK.md) · [Run the finite checks](verification/README.md)
+[Read the scientific argument](science/README.md) · [Learn through Watrous](learning/WATROUS_BRIDGE.md) · [Follow the 30 milestones](learning/MILESTONES.md) · [Understand the training and resource implications](science/interpretation.md) · [Compare with prior work](references/RELATED_WORK.md) · [Run the finite checks](verification/README.md) · [Reproduce the numerical figures](verification/Graph/README.md)
 
 ## Main results
 
@@ -50,11 +50,13 @@ python3 verification/check_math.py
 
 Finite checks corroborate explicit constructions; universal and adaptive optimality statements rely on the written proofs.
 
+The [quantitative figure route](verification/Graph/README.md) provides the Python generator, pinned dependencies, plotted data, and regeneration checks for the dissipative qubit curves and independent-register certification bounds.
+
 [Related work](references/RELATED_WORK.md) separates established ingredients from the results developed here. [BibTeX references](references/references.bib) provide the cited primary sources. [llms.txt](llms.txt) maps the repository for automated readers.
 
 ## Purpose and contact
 
-This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+The project is currently under collaboration, and the manuscript is being written. For questions, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
 
 ## License
 

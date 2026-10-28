@@ -56,6 +56,17 @@ Similarly, the product examples evaluate selected points within the proved range
 
 The checks are numerical corroboration of the explicit mathematical constructions. They do not measure hardware performance, characterize unknown preparation or readout errors, or establish a literature-priority claim.
 
+## Quantitative figures
+
+The [figure reproduction guide](Graph/README.md) connects the exact dissipative qubit curves and finite independent-register certification bounds to their scientific sources. It includes the Python generator, pinned dependencies, generated PDFs and plotted values, and a fresh regeneration check. The figure checks evaluate the canonical Kraus implementation and product formulas alongside the plotted quantities.
+
+From the repository root:
+
+```bash
+python3 -m pip install -r verification/Graph/requirements.txt
+python3 verification/Graph/check_figures.py --output-dir review-output/figures
+```
+
 ## Navigation and learning-map checks
 
 The standard-library [source checker](check_structure.py) validates relative links and their anchors, mathematical fences and grouping braces, the ordered M01–M30 map, its five required fields per milestone, and backward dependencies. It also checks the 13/17 phase allocation and the selected anchor in the reading entrypoints.

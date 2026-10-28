@@ -42,6 +42,7 @@ The learning map is independent of individual progress. Explain the science thro
 - [Verification guide](verification/README.md): Commands, recorded environment, seed, tolerances, and limits of finite checks.
 - [Report reproduction](verification/README.md#explanatory-report): Matching LaTeX source, stored-pair integrity, and a fresh TeX Live 2025 build.
 - [NumPy checks](verification/check_math.py): Explicit matrices, spectra, channels, and product formulas.
+- [Quantitative figures](verification/Graph/README.md): Python-generated qubit witness curves and finite certification bounds, pinned dependencies, plotted values, and regeneration checks.
 - [Dependency](verification/requirements.txt): NumPy version range.
 - [License](LICENSE): MIT license.
 

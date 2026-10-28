@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "expected_numerical_checks": 2479,
+  "assets": {
+    "mechanism.pdf": "94ed241c04b639df32b2581194215f67e9ba7a9cd063fac4afb02a242f22ff22",
+    "certification.pdf": "417e52944b246e2565686a53335ab1b031f250d9a4e1447845bc5699bbf67e2c"
+  },
+  "data_comparison": {
+    "relative_tolerance": 5e-13,
+    "absolute_tolerance": 2e-15
+  },
+  "geometry_inches": [
+    7,
+    3
+  ]
+}
