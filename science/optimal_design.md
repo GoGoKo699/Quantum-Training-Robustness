@@ -6,7 +6,7 @@ The [model](model.md) fixes the operational meaning of a training ray and distin
 
 ## Notation and statement
 
-Let $`S=\{P_i=|\psi_i\rangle\langle\psi_i|:1\leq i\leq N\}`$ consist of distinct normalized pure rays in dimension $`d\geq2`$. Let $`p_i>0`$ and $`\sum_i p_i=1`$. Define
+Let $`S=\{(p_i,P_i)\}_{i=1}^N`$ be a weighted ensemble of $`N`$ distinct normalized pure rays $`P_i=|\psi_i\rangle\langle\psi_i|`$ in dimension $`d\geq2`$, with $`p_i>0`$ and $`\sum_i p_i=1`$. Define
 
 ```math
 \rho_S=\sum_i p_iP_i,
@@ -328,7 +328,7 @@ C_*=\frac1{(d+1)\mu_*}
 
 The simplex $`\Delta_N`$ includes zero weights, since an optimizer may choose not to use an available ray. The objective is continuous and concave, and a maximum exists. If strictly positive weights are required, mixing an optimizer with any positive distribution approaches the same optimum.
 
-The support theorem applies to the positive support of each candidate distribution. Since the cardinality bound increases strictly with support size below $`d^2`$, an $`N`$-ray menu with $`d\lt N\leq d^2`$ can attain the stated $`N`$-ray bound only by using every ray, uniformly, in an equiangular tight frame. For $`N\geq d^2`$, it attains $`C_*=1`$ exactly when its rays admit weights forming a projective $`2`$-design, possibly on a smaller subcollection.
+The support theorem applies to the positive support of each candidate distribution. Since the gap upper bound increases strictly with support size below $`d^2`$, an $`N`$-ray menu with $`d\lt N\leq d^2`$ can attain the stated $`N`$-ray bound only by using every ray, uniformly, in an equiangular tight frame. For $`N\geq d^2`$, it attains $`C_*=1`$ exactly when its rays admit weights forming a projective $`2`$-design, possibly on a smaller subcollection.
 
 The [convex minimax formula](certification.md#fixed-menu-minimax-duality) turns $`\mu_*`$ into a single physical alternative that is hard for every allowed ray. This is why the cardinality bound constrains arbitrary adaptive certification strategies rather than only a chosen weighted survival statistic.
 

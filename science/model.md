@@ -4,6 +4,8 @@ A learned quantum operation is tested on a finite menu of pure input states. The
 
 The target is a unitary operation. The implemented or learned hypothesis may be any completely positive, trace-preserving (CPTP) map. This model includes dissipative mismatch that would be excluded by assuming that the hypothesis remains unitary.
 
+All logarithms are natural. Vector norms are Euclidean, and the operator norm $`\|A\|_{\mathrm{op}}`$ is the largest singular value of $`A`$. The commutator convention is $`[A,B]=AB-BA`$.
+
 ## 1. Training ensemble and test loss
 
 Let the system have dimension $`d\ge2`$. A fixed training ensemble is
@@ -14,7 +16,7 @@ P_i=|\psi_i\rangle\langle\psi_i|,\qquad
 p_i>0,\quad\sum_i p_i=1.
 ```
 
-The $`N`$ support rays are distinct and normalized. Let $`U`$ be the target unitary and $`\mathcal V`$ the hypothesis channel. Define the relative channel
+The $`N`$ support rays are distinct and normalized. Let $`U`$ be the target unitary, write $`\mathcal U(X)=UXU^\dagger`$ for its conjugation channel, and let $`\mathcal V`$ be the hypothesis channel. Define the relative channel
 
 ```math
 \mathcal E(X)=U^\dagger\mathcal V(X)U.

@@ -14,7 +14,7 @@ H_0:\mathcal V=\mathcal U,
 H_1:R_H(\mathcal U^\dagger\circ\mathcal V)\geq\delta,
 ```
 
-where $`\mathcal U(X)=UXU^\dagger`$ and $`R_H`$ is Haar average infidelity. The verifier must have both type-I and worst-case type-II error at most $`\alpha`$. We use $`0\lt \alpha\leq\alpha_*\lt 1/2`$ and sufficiently small $`\delta>0`$. Haar infidelity is at most $`d/(d+1)`$, so there is no nonempty alternative class beyond that range.
+where $`\mathcal U(X)=UXU^\dagger`$ and $`R_H`$ is Haar average infidelity. The verifier must have both type-I and worst-case type-II error at most $`\alpha`$. Fix a confidence ceiling $`0\lt\alpha_*\lt1/2`$ and use $`0\lt\alpha\leq\alpha_*`$ and sufficiently small $`\delta>0`$. Sample-order comparison constants may depend on this fixed ceiling. Haar infidelity is at most $`d/(d+1)`$, so there is no nonempty alternative class beyond that range.
 
 The sample budget $`T`$ is a worst-case cap on the number of device calls. Early stopping is allowed within this cap. The theorem does not assert an optimum for an expected stopping-time budget.
 
@@ -303,7 +303,7 @@ At fixed $`\alpha\lt 1/2`$, that argument gives the controlled bracket
 \leq\frac{\log(1/\alpha)}{c}.
 ```
 
-It does not identify an exact coefficient at fixed confidence for arbitrary two-sided-error protocols. If perfect completeness is imposed, Corollary 2 has numerator $`\log(1/\alpha)`$, so the coefficient becomes exact already at fixed confidence:
+It does not identify an exact coefficient at fixed confidence for arbitrary two-sided-error protocols. If perfect completeness is imposed, let $`T_{\rm pc}`$ denote the smallest worst-case call cap among allowed verifiers whose type-I error is zero. Corollary 2 has numerator $`\log(1/\alpha)`$, so the coefficient becomes exact already at fixed confidence:
 
 ```math
 \lim_{\delta\to0}
@@ -333,7 +333,7 @@ The overlap graph of the menu joins rays with nonzero inner product. The [geomet
 \text{ for every }i\}.
 ```
 
-For fixed $`d,S`$ and $`0\lt \alpha\leq\alpha_*\lt 1/2`$, the optimal precision orders are
+For fixed dimension $`d`$, menu $`S`$, and confidence ceiling $`0\lt\alpha_*\lt1/2`$, the following optimal precision orders hold uniformly for $`0\lt\alpha\leq\alpha_*`$:
 
 | Geometry of the available rays | Optimal sample order as $`\delta\to0`$ |
 |---|---:|
@@ -378,7 +378,7 @@ T\leq
 
 For the third row, there is a nonscalar unitary $`W`$ fixing every available ray as a density operator. If the rays do not span, choose different phases on their span and its orthogonal complement. If the overlap graph is disconnected, its component spans are mutually orthogonal, and different phases can be assigned to those spans. Such a unitary has a strictly positive Haar risk $`r_W`$ and produces exactly the same output as the identity on every allowed input. Every allowed adaptive experiment has identical distributions under these hypotheses. Thus no test with both errors below $`1/2`$ is possible for $`0\lt \delta\leq r_W`$.
 
-The constants in the first two rows can depend on the menu's conditioning, its fixed positive weights, and dimension. This is a classification of precision dependence for a fixed experiment, not a universal dimension bound.
+The constants in the first two rows can depend on the menu's conditioning, its fixed positive weights, dimension, and the fixed confidence ceiling $`\alpha_*`$. This is a classification of precision dependence for a fixed experiment, not a universal dimension bound.
 
 ## Trusted pure target references
 
@@ -394,7 +394,7 @@ Suppose the exact binary target-output projectors are unavailable, but each tria
 
 This is the standard state-comparison identity of [Barnett, Chefles, and Jex](../references/RELATED_WORK.md#barnett-et-al-2003), extended to the mixed device output by linearity. Exact equality of the two pure outputs under the null gives perfect completeness.
 
-For an optimized linear-regime ensemble, independently sampling labels and rejecting on any antisymmetric outcome gives the sufficient bound
+For an optimized linear-regime ensemble, sample labels independently and reject on any antisymmetric outcome. We may choose a sufficient worst-case device-call cap $`T_{\rm SWAP}`$ for this specified all-pass comparison protocol satisfying
 
 ```math
 T_{\rm SWAP}\leq

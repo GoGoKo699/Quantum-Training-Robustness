@@ -6,7 +6,7 @@ The channel and loss conventions are those of [the model](model.md) and [robustn
 
 ## The commutator form
 
-Let $`\overline\rho=\sum_i p_iP_i`$ be the ensemble's mean input state. Define
+Let $`\overline\rho=\sum_i p_iP_i=\rho_S`$ be the ensemble's mean input state, using the same $`\rho_S`$ as in [Optimal design](optimal_design.md). Define
 
 ```math
 G_S(A)=\frac12\sum_i p_i\|[A,P_i]\|_F^2,
