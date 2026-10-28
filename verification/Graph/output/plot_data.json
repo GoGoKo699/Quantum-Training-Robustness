@@ -1,13 +1,13 @@
 {
   "canonical_repository": "GoGoKo699/Quantum-Training-Robustness",
-  "canonical_revision": "4975d485cd84f7a58a0a35a81e1661cde6cc7f34",
+  "canonical_revision": "b30f50db232da041856b5014e9be3151a3f5ec68",
   "canonical_sources_sha256": {
     "verification/check_math.py": "d30736ceaf906252ad223ca3bc143a873604a0913f7308086ee78f3bee3877c0",
-    "science/model.md": "48ad555214beee8c767acfb68c00754d711152731cd5c4c01798d2bcf34aa765",
+    "science/model.md": "b802219a5936b7d81bdce7fe01a2c61ab2bb0811e40aa4b30b2b940ede59b62f",
     "science/probe_geometry.md": "68358ec08923c8c35856a55973a595950fd101766b6ce5afa567dc11aa023437",
     "science/product_channels.md": "d4d7f0a279cff75cf7e91a7ded6f4cc449563e866dbd0363d41f47b3e7eb5072",
     "science/robustness.md": "fa7cd04c44b4a9f736a9788ec6f24a1ec09114e9f0b61ec458a910c687d9449b",
-    "science/certification.md": "b0ee4a26e9fe604917c9ab4fa532f6352d27d2f672fdb5aa0fe2328722e0ae88"
+    "science/certification.md": "3b294dea6466563b925d647d8383cbcce53977d865a8b3a580e1c0ca0dbd8e3d"
   },
   "generator_sha256": "dd63407d777cf11c796a89b220a0683124d7eefef04cc0c1dd68dbfe3599e2e7",
   "requirements_sha256": "25f496ee4de888b889a01230d6b46c73c2aaaecafec89b66bab100674e338b0c",
