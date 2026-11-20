@@ -22,13 +22,17 @@ The main distinction is between **exact identification**, **stability of that id
 
 [Mayer and Knill (2018)](https://doi.org/10.1103/PhysRevA.98.052326), *Quantum Process Fidelity Bounds from Sets of Input States*, is the closest prior work. Theorem 1 proves that pure rays identify a unitary among all CPTP channels exactly when they span the Hilbert space and their nonorthogonality graph is connected. Theorem 2 gives a square-root upper bound on process infidelity. Theorem 3 proves linear bounds for equiangular tight frames (ETFs), including the simplex. The discussion after Theorem 2 explicitly asks which input geometry makes the square-root term vanish. Their conclusion additionally asks about optimal probe sets at fixed cardinality and finite error.
 
-The present characterization answers the geometric exponent question through common **right eigenoperators**, which may be nonnormal. It gives the exact optimal global linear coefficient whenever that coefficient is finite, and a matching dissipative obstruction otherwise. The cardinality theorem establishes the optimum of this linear coefficient against arbitrary weights and unbalanced ensembles. It does not solve the entire finite-error optimization posed by Mayer and Knill. Their ETF constructions, coefficients, and product preparation of the qubit simplex are credited ingredients.
+The common **right-eigenoperator** criterion answers the exponent question. For a positive variance gap, the work gives the exact global linear coefficient. A physical dissipative channel attains the square-root order for identifying menus with zero gap. The support theorem bounds the global linear coefficient over arbitrary weighted ensembles at fixed cardinality and characterizes equality. The full finite-error optimization concerns the entire worst-case risk curve at each loss tolerance.
+
+<a id="trureturing-2026"></a>
+
+The [Trureturing project (2026)](https://github.com/the-omega-institute/trureturing/blob/b444c71ced55f52e471cb1a1e7f3d5e6e391e193/Problems/mayer-knill-infidelity-scaling.md) formalizes the same exponent dichotomy in Lean for a common per-probe tolerance, using the same square-root Kraus completion. For fixed positive sampling weights, the weighted mean lies between the maximum probe loss times the smallest weight and the maximum loss itself. This comparison gives the same exponents under both loss conventions.
 
 ## Balanced verification and the number of settings
 
 <a id="zhu-zhang-2020"></a>
 
-[Zhu and Zhang (2020)](https://doi.org/10.1103/PhysRevA.101.042316), *Efficient verification of quantum gates with local operations*, provide a general process-verification framework. Section III allows arbitrary weighted input ensembles and formulates the maximum passing probability as an optimization over channels. Section IV specializes the explicit spectral-gap bounds to balanced ensembles, whose average input is maximally mixed. It would therefore be incorrect to describe their entire framework as restricted to balanced ensembles.
+[Zhu and Zhang (2020)](https://doi.org/10.1103/PhysRevA.101.042316), *Efficient verification of quantum gates with local operations*, formulate the maximum passing probability as an optimization over channels for arbitrary weighted input ensembles in Section III. Section IV gives explicit spectral-gap bounds for balanced ensembles, whose average input is maximally mixed. Weighted projective 2-designs attain the optimum in their process-verification model.
 
 For ideal output-projector tests and balanced inputs, the present variance gap is their preparation gap divided by $`d`$. In the notation of this project,
 
