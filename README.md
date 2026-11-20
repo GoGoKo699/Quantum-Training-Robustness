@@ -48,7 +48,7 @@ python3 verification/check_math.py
 
 Finite checks corroborate explicit constructions; universal and adaptive optimality statements rely on the written proofs.
 
-The manuscript cites [release v1.1.0](https://github.com/GoGoKo699/Quantum-Training-Robustness/releases/tag/v1.1.0), at revision `3287066`, for proofs and numerical verification. The [table reproduction recipe](verification/Graph/README.md#reproduce-the-manuscript-table) evaluates all five rows of the manuscript's call-count table with the same generator used for the [companion plots](verification/Graph/README.md).
+The [table reproduction recipe](verification/Graph/README.md#reproduce-the-manuscript-table) evaluates all five rows of the manuscript's call-count table with the same generator used for the [companion plots](verification/Graph/README.md).
 
 [Related work](references/RELATED_WORK.md) separates established ingredients from the results developed here. [BibTeX references](references/references.bib) provide the cited primary sources.
 
