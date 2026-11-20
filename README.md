@@ -1,6 +1,6 @@
 # Quantum Training Robustness
 
-Companion repository for **Probe Geometry and the Cost of Quantum Gate Certification**.
+Companion repository for **Probe Geometry and the Cost of Quantum Gate Certification**. This project is an ongoing collaboration.
 
 ## When does a small probe loss certify a quantum gate?
 
@@ -27,7 +27,7 @@ The single educational anchor is **John Watrous, *The Theory of Quantum Informat
 
 The [30-milestone map](learning/MILESTONES.md) contains **13 background/preliminaries milestones** and **17 narrative/innovation milestones**. It moves from individual states and channels to the complete experiment, then from the operator mechanism to optimal resource laws. Each milestone includes a central question, an understanding target, earlier dependencies, a conceptual connection, and scientific source pointers.
 
-The map is common to all readers and independent of personal assessment records. Use it with the bridge for self-directed study, or follow the [scientific map](science/README.md) directly for the proofs. [llms.txt](llms.txt) provides question-to-file routes for automated readers.
+The map is common to all readers and independent of personal assessment records. Use it with the bridge for self-directed study, or follow the [scientific map](science/README.md) directly for the proofs.
 
 ## Scope
 
@@ -50,7 +50,7 @@ Finite checks corroborate explicit constructions; universal and adaptive optimal
 
 The manuscript cites [release v1.1.0](https://github.com/GoGoKo699/Quantum-Training-Robustness/releases/tag/v1.1.0), at revision `3287066`, for proofs and numerical verification. The [table reproduction recipe](verification/Graph/README.md#reproduce-the-manuscript-table) evaluates all five rows of the manuscript's call-count table with the same generator used for the [companion plots](verification/Graph/README.md).
 
-[Related work](references/RELATED_WORK.md) separates established ingredients from the results developed here. [BibTeX references](references/references.bib) provide the cited primary sources. [llms.txt](llms.txt) maps the repository for automated readers.
+[Related work](references/RELATED_WORK.md) separates established ingredients from the results developed here. [BibTeX references](references/references.bib) provide the cited primary sources.
 
 ## Contact
 
