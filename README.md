@@ -1,10 +1,10 @@
 # Quantum Training Robustness
 
-## When does a small training loss certify a quantum operation?
+Companion repository for **Probe Geometry and the Cost of Quantum Gate Certification**.
 
-A finite set of pure inputs can identify a target unitary exactly while giving a weak guarantee when its measured training loss is merely small. This repository characterizes that gap for learned or implemented operations that may be arbitrary completely positive, trace-preserving (CPTP) channels.
+## When does a small probe loss certify a quantum gate?
 
-The decisive object is the variance of an operator on the training rays. Linear control of Haar-average test infidelity holds exactly when the only operators that preserve every training ray as a right eigenvector are scalar multiples of the identity. The corresponding variance gap gives the **optimal global linear coefficient**. A nonscalar, nonnormal direction can instead hide first-order dissipative error behind second-order training loss.
+A set of pure probes can identify a target unitary exactly and give a square-root guarantee at small nonzero loss. Mayer and Knill asked which identifying menus give a linear guarantee. The criterion is that every operator having all probe rays as right eigenvectors must be scalar. The operator variance gap gives the **sharp global linear coefficient** when the criterion holds. A dissipative channel attains the square-root order in the other identifying menus.
 
 [Read the scientific argument](science/README.md) · [Learn through Watrous](learning/WATROUS_BRIDGE.md) · [Follow the 30 milestones](learning/MILESTONES.md) · [Understand the training and resource implications](science/interpretation.md) · [Compare with prior work](references/RELATED_WORK.md) · [Run the finite checks](verification/README.md) · [Reproduce the numerical figures](verification/Graph/README.md)
 
@@ -15,11 +15,11 @@ The decisive object is the variance of an operator on the training rays. Linear 
 | What does exact identification guarantee at small nonzero loss? | A sharp classification: nonidentifiability, square-root robustness, or linear robustness. The distinction is proved through the common right-eigenoperator algebra. |
 | What is the best linear coefficient for a fixed weighted ensemble? | $`C_S=1/[(d+1)\mu_S]`$, where $`\mu_S`$ is the variance gap on traceless complex operators. The bound is attained asymptotically by physical CPTP perturbations. |
 | How many pure probes are needed for a good coefficient? | For arbitrary weights and imbalance, $`C_S\ge d(N-1)/[(d+1)(N-d)]`$ when $`d\lt N\le d^2`$. Equality requires a uniform equiangular tight frame and is attained when one exists. |
-| Can adaptive choice and collective readout remove the precision penalty? | Under fresh inputs selected by a classical menu index, the variance gap optimized over sampling weights, $`\mu_*`$, determines the exact leading certification coefficient in the joint small-error, high-confidence limit. Arbitrary retained quantum output memory is allowed. |
+| What determines the optimal call count? | For fixed dimension and menu, a positive optimized variance gap $`\mu_*`$ gives the exact leading coefficient $`1/[(d+1)\mu_*]`$ as the infidelity threshold and decision error jointly vanish. The upper bound uses ideal target-output projectors. The converse covers adaptive classical selection of fresh probes and collective measurement of retained outputs. |
 | What changes for unital hypotheses? | Every connected spanning menu has a sharp linear bound. A quantitative nonunitality budget gives the crossover to square-root robustness. |
-| Is there a scalable illustration? | For an exact product of $`n`$ qubit channels, two global product probes need order $`n\delta^{-2}\log(1/\alpha)`$ examples; a third gives order $`\delta^{-1}\log(1/\alpha)`$. Each example still uses all $`n`$ qubits. |
+| What does a third global probe buy? | For an exact product of $`n`$ qubit channels, two global product probes need order $`n\delta^{-2}\log(1/\alpha)`$ whole-register calls. A third reduces the order to $`\delta^{-1}\log(1/\alpha)`$. Each call applies all $`n`$ local channels once. |
 
-Definitions, constants, hypotheses, and full proofs are in the [science pages](science/README.md). The complete finite-error frontier is a separate optimization problem from the best global linear coefficient.
+Definitions, constants, and proofs are in the [science pages](science/README.md). The [related-work notes](references/RELATED_WORK.md) explain the distinction between the sharp global linear coefficient and the full finite-error frontier.
 
 ## Learn the project
 
@@ -33,7 +33,7 @@ The map is common to all readers and independent of personal assessment records.
 
 ## Scope
 
-The target is unitary; the hypothesis may dissipate. Test risk is Haar-average gate infidelity on the full system. Certification compares the exact target with a fixed alternative of risk at least $`\delta`$, using fresh data and a worst-case cap on device calls. The exact sampling coefficient assumes ideal target-output projectors. Fresh trusted pure target copies preserve the exponents with a constant comparison overhead.
+The target is unitary, and the implementation may be any completely positive, trace-preserving (CPTP) channel. Certification compares the exact target with a fixed alternative whose Haar-average infidelity on the full system is at least $`\delta`$. Each call uses a fresh probe from the prescribed menu. The call count is a worst-case cap. With one fresh trusted pure target copy per call, SWAP comparison preserves the precision exponents.
 
 These are loss-transfer and certification results. Their relation to training, preparation cost, noisy baselines, and the stronger assumptions of the product-channel application is developed in [Interpretation](science/interpretation.md).
 
@@ -50,13 +50,13 @@ python3 verification/check_math.py
 
 Finite checks corroborate explicit constructions; universal and adaptive optimality statements rely on the written proofs.
 
-The [quantitative figure route](verification/Graph/README.md) provides the Python generator, pinned dependencies, plotted data, and regeneration checks for the dissipative qubit curves and independent-register certification bounds.
+The manuscript cites [release v1.1.0](https://github.com/GoGoKo699/Quantum-Training-Robustness/releases/tag/v1.1.0), at revision `3287066`, for proofs and numerical verification. The [table reproduction recipe](verification/Graph/README.md#reproduce-the-manuscript-table) evaluates all five rows of the manuscript's call-count table with the same generator used for the [companion plots](verification/Graph/README.md).
 
 [Related work](references/RELATED_WORK.md) separates established ingredients from the results developed here. [BibTeX references](references/references.bib) provide the cited primary sources. [llms.txt](llms.txt) maps the repository for automated readers.
 
-## Purpose and contact
+## Contact
 
-The project is currently under collaboration, and the manuscript is being written. For questions, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+For questions about the repository, contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
 
 ## License
 

@@ -42,3 +42,17 @@ The mechanism curves evaluate one physical channel family with equal probe weigh
 The certification curves use decision error `alpha = 0.05`. The precision panel fixes `n = 32`; the register panel fixes `delta = 0.05`. Calibration checks cover the plotted range within `0 < delta <= 1/8`. The three-probe weights are `(3/10, 2/5, 3/10)`.
 
 Here `T` counts whole-register repetitions. Each repetition invokes all `n` local channels, so the total local channel count is `nT`. The product-channel result assumes exact independent qubit channels, fresh classically selected inputs, system outputs, and ideal target-output projectors. The lower bound permits retained quantum output memory and collective readout.
+
+## Reproduce the manuscript table
+
+Table I of *Probe Geometry and the Cost of Quantum Gate Certification* uses `finite_bounds` at the five parameter pairs below. Run this from the repository root with the dependencies installed as above. Each row prints `n`, `delta`, a necessary call count for two directions, and a sufficient call count for three probes.
+
+```bash
+PYTHONPATH=verification/Graph python3 - <<'PY'
+from generate_plots import finite_bounds
+
+for n, delta in [(8, 0.05), (32, 0.05), (128, 0.05), (32, 0.10), (32, 0.025)]:
+    bounds = finite_bounds(n, delta, alpha=0.05)
+    print(n, f"{delta:g}", bounds["two_lower_calls"], bounds["three_upper_calls"])
+PY
+```
