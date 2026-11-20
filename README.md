@@ -23,8 +23,6 @@ Definitions, constants, and proofs are in the [science pages](science/README.md)
 
 ## Learn the project
 
-[Explanatory report](learning/report/Quantum_Training_Robustness_Report.pdf) — a self-contained route from the experiment and qubit example to the proofs, certification recipes, and independent-register result.
-
 The single educational anchor is **John Watrous, *The Theory of Quantum Information* (2018)**. The [Watrous bridge](learning/WATROUS_BRIDGE.md) identifies relevant sections of the author's standard-layout pre-publication version, translates the notation, and connects the textbook foundations to the operator gap, physical noise witness, certification converse, and product-channel application. Root versus squared fidelity and the restricted input-access model are kept explicit.
 
 The [30-milestone map](learning/MILESTONES.md) contains **13 background/preliminaries milestones** and **17 narrative/innovation milestones**. It moves from individual states and channels to the complete experiment, then from the operator mechanism to optimal resource laws. Each milestone includes a central question, an understanding target, earlier dependencies, a conceptual connection, and scientific source pointers.

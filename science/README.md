@@ -4,7 +4,7 @@ The central question is whether a finite pure-state training menu controls the e
 
 ## Read the argument
 
-For a continuous introduction with worked examples, start with the [explanatory report](../learning/report/Quantum_Training_Robustness_Report.pdf). The topic pages below give the canonical statements, proofs, and source attribution.
+For a guided introduction, follow the [30 milestones](../learning/MILESTONES.md). The topic pages below give the canonical statements, proofs, and source attribution.
 
 | Page | Question answered | Main dependencies |
 |---|---|---|
