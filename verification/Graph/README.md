@@ -67,4 +67,4 @@ Expected output at `alpha = 0.05`:
 32 0.025 186626 598
 ```
 
-These are a necessary count for the two-direction menu and a sufficient count for the three-probe menu at the stated finite parameters. Theorem 4 establishes the matching orders and the joint limiting coefficient; the two columns are not claims of exact finite-parameter optimum counts.
+These are a necessary count for the two-direction menu and a sufficient count for the three-probe menu at the stated finite parameters. Theorem 4 establishes the uniform repetition orders and, at fixed `n`, the joint limiting coefficient; the two columns are not claims of exact finite-parameter optimum counts.
