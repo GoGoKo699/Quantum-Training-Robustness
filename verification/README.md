@@ -56,9 +56,9 @@ Similarly, the product examples evaluate selected points within the proved range
 
 The checks are numerical corroboration of the explicit mathematical constructions. They do not measure hardware performance, characterize unknown preparation or readout errors, or establish a literature-priority claim.
 
-## Quantitative figures
+## Table I and companion plots
 
-The [figure reproduction guide](Graph/README.md) connects the exact dissipative qubit curves and finite independent-register certification bounds to their scientific sources. It includes the Python generator, pinned dependencies, generated PDFs and plotted values, and a fresh regeneration check. The figure checks evaluate the canonical Kraus implementation and product formulas alongside the plotted quantities.
+The manuscript uses Table I to compare finite necessary and sufficient call counts. Its [reproduction recipe](Graph/README.md#reproduce-the-manuscript-table) evaluates all five rows with the existing `finite_bounds` routine and gives the expected output. The [companion plot guide](Graph/README.md) also provides optional illustrations of the exact dissipative qubit curves and finite independent-register bounds, together with their scientific sources, pinned dependencies, and plotted values. The regeneration checks evaluate the canonical Kraus implementation and product formulas alongside these quantities.
 
 From the repository root:
 

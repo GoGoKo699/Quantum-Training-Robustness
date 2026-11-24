@@ -2,9 +2,11 @@
 
 The general support bound concerns arbitrary channels on a $`d`$-dimensional system. A structural promise can reduce the number of input settings dramatically. This page assumes an exact tensor product of qubit channels and shows that one additional global product input changes both the precision exponent and the dependence on register size.
 
+**Manuscript correspondence.** This page proves **Theorem 4 (Certification of independent qubits)** and reproduces its finite call bounds in **Table I**, corresponding to Section VII and Appendix F. The repetition orders are uniform in register size; the exact leading three-probe coefficient takes the joint small-error, high-confidence limit at fixed register size.
+
 ## 1. Product promise and operational task
 
-Let $`D=2^n`$ and suppose the relative channel is
+Let $`n\ge1`$, set $`D=2^n`$, and suppose the relative channel is exactly
 
 ```math
 \mathcal E=\bigotimes_{j=1}^n\mathcal E_j,
@@ -14,7 +16,7 @@ where each $`\mathcal E_j`$ is an arbitrary qubit CPTP map. The physical target 
 
 This is a promise about the whole channel. Specifying its one-qubit marginals, or allowing a correlated mixture of product channels, does not imply this tensor factorization. The proof uses the factorization of output survival probabilities and entanglement fidelity.
 
-One global use prepares an $`n`$-qubit product input and returns all $`n`$ output qubits. The verifier has the fresh-input access of [Certification](certification.md), including arbitrary quantum output memory and classical adaptive choice of later inputs. Its task is to distinguish the exact target from $`R(\mathcal E)\ge\delta`$, with both errors at most $`\alpha`$.
+One global call sends a fresh $`n`$-qubit product input through all $`n`$ local channels once and returns all $`n`$ output qubits. The device is memoryless across calls. The verifier has the fresh-input access of [Certification](certification.md#certification-task-and-access-contract): the input is conditionally independent of retained memory given its classical label, while arbitrary quantum output memory, adaptive classical label selection, and collective output measurements are allowed. Its task is to distinguish the exact target from $`R(\mathcal E)\ge\delta`$, with both errors at most $`\alpha`$.
 
 For the upper bounds, two or three global inputs suffice:
 
@@ -26,6 +28,44 @@ S_3=S_2\cup\{|1\rangle^{\otimes n}\},
 ```
 
 The two-direction lower bound also permits every mixed tensor string built from local $`|0\rangle`$ and $`|+\rangle`$. It therefore applies to the much larger menu of $`2^n`$ such preparations.
+
+Let $`T_k^\star(\delta,\alpha)`$ be the smallest worst-case cap on whole-register calls for the menu $`S_k`$. This cap includes every branch of a protocol that stops early. Let $`Y_r=e_{r^{\otimes n}}(\mathcal E)`$ be the survival loss on the global input $`|r\rangle^{\otimes n}`$. For the ordered menu $`(0,+,1)`$, define
+
+```math
+p=(3/10,2/5,3/10),\qquad
+\epsilon_p=\sum_r p_rY_r,\qquad
+C_n=\frac{5D}{D+1}.
+```
+
+The risk $`R`$ is the Haar-average infidelity on the full register, including entangled test states.
+
+**Theorem 4 — Certification of independent qubits.** Under this exact-product promise and with ideal target-output projectors available:
+
+1. For every fixed $`0\lt\alpha_*\lt1/2`$, constants independent of $`n,\delta,\alpha`$ give
+
+   ```math
+   T_2^\star=\Theta\!\left(n\delta^{-2}\log(1/\alpha)\right),\qquad
+   T_3^\star=\Theta\!\left(\delta^{-1}\log(1/\alpha)\right)
+   ```
+
+   for $`n\ge1`$, $`0\lt\delta\le1/8`$, and $`0\lt\alpha\le\alpha_*`$. The two-probe lower bound also holds on the full menu of mixed tensor strings from the two local directions.
+
+2. Every channel in the product class obeys the global bound
+
+   ```math
+   R(\mathcal E)\le C_n\epsilon_p(\mathcal E).
+   ```
+
+   The coefficient $`C_n`$ is optimal over all sampling weights on $`S_3`$. For each fixed $`n`$,
+
+   ```math
+   \lim_{\substack{\delta\to0\\\alpha\to0}}
+   \frac{\delta T_3^\star(\delta,\alpha)}{\log(1/\alpha)}=C_n,
+   ```
+
+   with no required relation between the rates at which $`\delta`$ and $`\alpha`$ tend to zero.
+
+The sections below prove the two parts and distinguish whole-register repetitions from total local channel uses.
 
 ## 2. Product identities
 
@@ -57,7 +97,7 @@ Both global probes in $`S_2`$ being preserved exactly forces every local map to 
 
 ## 3. Matching two-direction law
 
-For any fixed $`\alpha_*\lt 1/2`$, there are positive constants independent of $`n,\delta,\alpha`$ such that, for $`0\lt \delta\le1/8`$ and $`0\lt \alpha\le\alpha_*`$,
+For any fixed $`0\lt\alpha_*\lt 1/2`$, there are positive constants independent of $`n,\delta,\alpha`$ such that, for $`0\lt \delta\le1/8`$ and $`0\lt \alpha\le\alpha_*`$,
 
 ```math
 T_2^\star(\delta,\alpha)
@@ -225,19 +265,50 @@ T_3^\star(\delta,\alpha)
 
 uniformly in $`n`$ in the same small-error range.
 
-The exact leading coefficient for this three-setting product model also follows from the minimax construction in [Certification](certification.md). The optimized qubit menu has $`\mu_*=1/10`$. Its multi-Kraus adversary makes every local probe error at most $`(3/10)R_{\rm local}+O(R_{\rm local}^2)`$. Embed it at one site and use
+The exact leading coefficient follows from the minimax construction in [Certification](certification.md#exact-multi-kraus-adversary). The optimized qubit menu has $`\mu_*=1/10`$. Its multi-Kraus adversary obeys $`R_{\rm local}\ge t/3`$ and $`e_i\le t/10+t^2`$ on every local probe. Embed it at one site and use
 
 ```math
-R_{\rm global}=\frac{3D}{2(D+1)}R_{\rm local}.
+R_{\rm global}=g_D R_{\rm local},\qquad
+g_D=\frac{3D}{2(D+1)}.
 ```
 
-Every global probe error is then at most $`(D+1)\delta/(5D)+O(\delta^2)`$. Together with the weighted survival upper bound, this proves, for fixed $`n`$ and ideal target projectors,
+For sufficiently small $`\delta`$, choose $`t=3\delta/g_D=2(D+1)\delta/D`$. The global risk is at least $`\delta`$ and every global probe error is at most
+
+```math
+b_{D,\delta}
+=\frac{D+1}{5D}\delta
+ +\frac{4(D+1)^2}{D^2}\delta^2.
+```
+
+The lower-bound denominator $`-\log(1-b_{D,\delta})`$ and the survival-test upper denominator $`-\log(1-\delta/C_n)`$ are both $`\delta/C_n+O(\delta^2)`$ at fixed $`n`$. Their confidence logarithms have ratio tending to one as $`\alpha\to0`$. Together these prove the coefficient in Theorem 4:
 
 ```math
 \lim_{\delta\downarrow0,\,\alpha\downarrow0}
 \frac{\delta T_3^\star(\delta,\alpha)}{\log(1/\alpha)}
 =\frac{5D}{D+1}.
 ```
+
+This limit fixes $`n`$ and permits $`\delta`$ and $`\alpha`$ to tend to zero independently. The repetition orders in part 1 of Theorem 4 hold uniformly in $`n`$.
+
+### Finite call bounds: manuscript Table I
+
+The two-direction necessary count is the ceiling of the fidelity lower bound evaluated at the exact calibration in [Section 3](#3-matching-two-direction-law). The three-probe sufficient count is
+
+```math
+\left\lceil\frac{\log(1/\alpha)}{-\log(1-\delta/C_n)}\right\rceil
+```
+
+for weights $`(3/10,2/5,3/10)`$. With $`\alpha=0.05`$ and ideal target-output projectors, these are the manuscript's five rows:
+
+| Qubits $`n`$ | Risk threshold $`\delta`$ | Two directions: calls required at least | Three probes: calls sufficient |
+|---:|---:|---:|---:|
+| 8 | 5% | 11,312 | 297 |
+| **32** | **5%** | **45,489** | **299** |
+| 128 | 5% | 181,831 | 299 |
+| 32 | 10% | 10,792 | 149 |
+| 32 | 2.5% | 186,626 | 598 |
+
+Each whole-register call uses all $`n`$ local channels. The `finite_bounds` routine in [generate_plots.py](../verification/Graph/generate_plots.py) evaluates these necessary and sufficient bounds directly.
 
 ## 6. A local physical realization of the hard channel
 

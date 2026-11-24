@@ -4,11 +4,13 @@ Companion repository for **Probe Geometry and the Cost of Quantum Gate Certifica
 
 ## When does a small probe loss certify a quantum gate?
 
-A set of pure probes can identify a target unitary exactly and give a square-root guarantee at small nonzero loss. Mayer and Knill asked which identifying menus give a linear guarantee. The criterion is that every operator having all probe rays as right eigenvectors must be scalar. The operator variance gap gives the **sharp global linear coefficient** when the criterion holds. A dissipative channel attains the square-root order in the other identifying menus.
+A set of pure probes can identify a target unitary exactly and give a square-root guarantee at small nonzero loss. Mayer and Knill asked which identifying menus give a linear guarantee. The criterion is that every operator having all probe rays as right eigenvectors must be scalar. The operator variance gap gives the **sharp global linear coefficient** when the criterion holds. A dissipative channel family attains the square-root order in the other identifying menus.
 
-[Read the scientific argument](science/README.md) · [Learn through Watrous](learning/WATROUS_BRIDGE.md) · [Follow the 30 milestones](learning/MILESTONES.md) · [Understand the training and resource implications](science/interpretation.md) · [Compare with prior work](references/RELATED_WORK.md) · [Run the finite checks](verification/README.md) · [Reproduce the numerical figures](verification/Graph/README.md)
+[Read the scientific argument](science/README.md) · [Learn through Watrous](learning/WATROUS_BRIDGE.md) · [Follow the 30 milestones](learning/MILESTONES.md) · [Understand the training and resource implications](science/interpretation.md) · [Compare with prior work](references/RELATED_WORK.md) · [Run the finite checks](verification/README.md) · [Reproduce Table I](verification/Graph/README.md#reproduce-the-manuscript-table)
 
 ## Main results
+
+The manuscript presents four theorems, one corollary, and one proposition. The [statement map](science/README.md#manuscript-statements) connects each numbered result to its supporting proofs.
 
 | Question | Result |
 |---|---|
@@ -17,7 +19,7 @@ A set of pure probes can identify a target unitary exactly and give a square-roo
 | How many pure probes are needed for a good coefficient? | For arbitrary weights and imbalance, $`C_S\ge d(N-1)/[(d+1)(N-d)]`$ when $`d\lt N\le d^2`$. Equality requires a uniform equiangular tight frame and is attained when one exists. |
 | What determines the optimal call count? | For fixed dimension and menu, a positive optimized variance gap $`\mu_*`$ gives the exact leading coefficient $`1/[(d+1)\mu_*]`$ as the infidelity threshold and decision error jointly vanish. The upper bound uses ideal target-output projectors. The converse covers adaptive classical selection of fresh probes and collective measurement of retained outputs. |
 | What changes for unital hypotheses? | Every connected spanning menu has a sharp linear bound. A quantitative nonunitality budget gives the crossover to square-root robustness. |
-| What does a third global probe buy? | For an exact product of $`n`$ qubit channels, two global product probes need order $`n\delta^{-2}\log(1/\alpha)`$ whole-register calls. A third reduces the order to $`\delta^{-1}\log(1/\alpha)`$. Each call applies all $`n`$ local channels once. |
+| What does a third global probe buy? | For a product-unitary target and an exact product of $`n`$ qubit channels, the two specified global product probes need order $`n\delta^{-2}\log(1/\alpha)`$ whole-register calls. Adding the third specified probe reduces the order to $`\delta^{-1}\log(1/\alpha)`$, uniformly in $`n`$. Each call applies all $`n`$ local channels once. |
 
 Definitions, constants, and proofs are in the [science pages](science/README.md). The [related-work notes](references/RELATED_WORK.md) explain the distinction between the sharp global linear coefficient and the full finite-error frontier.
 
@@ -31,7 +33,7 @@ The map is common to all readers and independent of personal assessment records.
 
 ## Scope
 
-The target is unitary, and the implementation may be any completely positive, trace-preserving (CPTP) channel. Certification compares the exact target with a fixed alternative whose Haar-average infidelity on the full system is at least $`\delta`$. Each call uses a fresh probe from the prescribed menu. The call count is a worst-case cap. With one fresh trusted pure target copy per call, SWAP comparison preserves the precision exponents.
+The target is unitary, and the implementation may be any completely positive, trace-preserving (CPTP) channel. Certification compares the exact target with a fixed alternative whose Haar-average infidelity on the full system is at least $`\delta`$. Each call uses the same memoryless channel once on a fresh probe selected by a classical label. Conditional on that label, the preparation is independent of retained memory; outputs may be stored and measured collectively. The call count is a worst-case cap. With one fresh trusted pure target copy per call, SWAP comparison preserves the precision exponents with a sufficient leading call bound twice that of the ideal-projector protocol.
 
 These are loss-transfer and certification results. Their relation to training, preparation cost, noisy baselines, and the stronger assumptions of the product-channel application is developed in [Interpretation](science/interpretation.md).
 

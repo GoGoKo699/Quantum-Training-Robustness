@@ -2,6 +2,19 @@
 
 The central question is whether a finite pure-state training menu controls the error of a quantum operation on a new input. The argument proceeds from an exact operator identity to geometry, optimal design, and an operational certification theorem.
 
+## Manuscript statements
+
+The following map follows the numbered statements in *Probe Geometry and the Cost of Quantum Gate Certification*. The topic pages retain the detailed arguments and examples.
+
+| Statement | Conclusion | Supporting pages |
+|---|---|---|
+| Theorem 1 | Exact criterion and sharp global coefficient for linear robustness. | [Robustness](robustness.md); [probe geometry](probe_geometry.md) gives concrete criteria and examples. |
+| Corollary 1 | Nonidentification, square-root robustness, and linear robustness. | [Robustness](robustness.md). |
+| Theorem 2 | Support-size bound, ETF equality, and the absolute projective-design optimum. | [Optimal design](optimal_design.md). |
+| Proposition 1 | Sharp unital bound and the frontier under a nonunitality budget. | [Nonunitality](nonunitality.md). |
+| Theorem 3 | Optimal leading fixed-menu certification cost in the joint small-error limit. | [Model](model.md) specifies access; [certification](certification.md) gives the achievable bound and adaptive converse. |
+| Theorem 4 | Uniform two-versus-three global-probe laws and the sharp three-probe coefficient for independent qubits. | [Product channels](product_channels.md). |
+
 ## Read the argument
 
 For a guided introduction, follow the [30 milestones](../learning/MILESTONES.md). The topic pages below give the canonical statements, proofs, and source attribution.

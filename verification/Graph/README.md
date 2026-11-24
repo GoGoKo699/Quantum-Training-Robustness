@@ -1,10 +1,10 @@
-# Quantitative figures
+# Table I and companion plots
 
-The Python generator evaluates the explicit dissipative qubit channel and finite certification bounds developed in the scientific account. The two PDF assets retain their accepted labels, 7-by-3-inch geometry, and serif typography.
+The Python generator evaluates the explicit dissipative qubit channel and finite certification bounds developed in the scientific account. Its `finite_bounds` routine reproduces Table I of the manuscript, as shown [below](#reproduce-the-manuscript-table). The manuscript contains no figures. The two PDF assets remain available as companion illustrations of the exact formulas and finite bounds, with their existing panel labels, 7-by-3-inch geometry, and serif typography.
 
 | Asset | Scientific content |
 |---|---|
-| [mechanism.pdf](output/mechanism.pdf) | Exact Haar risk and uniform two-probe or three-probe loss as the channel parameter varies; the same family plotted as risk versus training loss. The asset uses panel labels (b) and (c), allowing it to accompany a separate schematic. |
+| [mechanism.pdf](output/mechanism.pdf) | Exact Haar risk and uniform two-probe or three-probe loss as the channel parameter varies; the same family plotted as risk versus training loss. The companion asset retains panel labels (b) and (c). |
 | [certification.pdf](output/certification.pdf) | A necessary two-direction repetition bound and an attainable three-probe cap, compared against precision and independent-register size. |
 | [plot_data.json](output/plot_data.json) | All plotted values, numerical check records, source hashes, plotting environment, and output hashes. |
 
@@ -41,7 +41,7 @@ The mechanism curves evaluate one physical channel family with equal probe weigh
 
 The certification curves use decision error `alpha = 0.05`. The precision panel fixes `n = 32`; the register panel fixes `delta = 0.05`. Calibration checks cover the plotted range within `0 < delta <= 1/8`. The three-probe weights are `(3/10, 2/5, 3/10)`.
 
-Here `T` counts whole-register repetitions. Each repetition invokes all `n` local channels, so the total local channel count is `nT`. The product-channel result assumes exact independent qubit channels, fresh classically selected inputs, system outputs, and ideal target-output projectors. The lower bound permits retained quantum output memory and collective readout.
+Here `T` counts whole-register repetitions. Each repetition invokes all `n` local channels, so the total local channel count is `nT`. The product-channel result assumes a product-unitary target, exact independent qubit channels, fresh classically selected inputs, system outputs, and ideal target-output projectors. The lower bound permits retained quantum output memory and collective readout.
 
 ## Reproduce the manuscript table
 
@@ -56,3 +56,15 @@ for n, delta in [(8, 0.05), (32, 0.05), (128, 0.05), (32, 0.10), (32, 0.025)]:
     print(n, f"{delta:g}", bounds["two_lower_calls"], bounds["three_upper_calls"])
 PY
 ```
+
+Expected output at `alpha = 0.05`:
+
+```text
+8 0.05 11312 297
+32 0.05 45489 299
+128 0.05 181831 299
+32 0.1 10792 149
+32 0.025 186626 598
+```
+
+These are a necessary count for the two-direction menu and a sufficient count for the three-probe menu at the stated finite parameters. Theorem 4 establishes the matching orders and the joint limiting coefficient; the two columns are not claims of exact finite-parameter optimum counts.
