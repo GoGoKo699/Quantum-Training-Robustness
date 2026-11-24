@@ -2,6 +2,8 @@
 
 A learned quantum operation is tested on a finite menu of pure input states. The question is whether small error on that menu controls its error on a fresh, Haar-distributed pure input, and how many physical examples are needed to certify that control. Exact identification, robust loss transfer, and sample complexity are separate properties of the menu.
 
+**Manuscript correspondence.** This page supplies the losses and access model used by **Theorem 3 (Optimal leading certification cost)** and **Theorem 4 (Certification of independent qubits)**. The earlier robustness and design results use the same relative channel and Haar-average risk.
+
 The target is a unitary operation. The implemented or learned hypothesis may be any completely positive, trace-preserving (CPTP) map. This model includes dissipative mismatch that would be excluded by assuming that the hypothesis remains unitary.
 
 All logarithms are natural. Vector norms are Euclidean, and the operator norm $`\|A\|_{\mathrm{op}}`$ is the largest singular value of $`A`$. The commutator convention is $`[A,B]=AB-BA`$.
@@ -89,6 +91,8 @@ C_S=\frac1{(d+1)\mu_S}.
 
 This coefficient is globally valid in the loss inequality and is approached by physical channels near the identity. It does not specify the entire finite-error boundary of the feasible loss region.
 
+We set $`C_S=+\infty`$ when $`\mu_S=0`$.
+
 ## 3. Three robustness regimes
 
 Join two probe rays when their inner product is nonzero. A menu exactly identifies the target among CPTP hypotheses if and only if its rays span the system and this overlap graph is connected. This identification criterion is established in [Mayer–Knill](../references/RELATED_WORK.md#mayer-knill-2018).
@@ -115,20 +119,20 @@ H_1:R(\mathcal E)\ge\delta,
 
 with both decision errors at most $`\alpha\in(0,1/2)`$. The device is the same memoryless channel on every use. The resource $`T`$ is a worst-case cap on channel calls, including protocols that stop early. Expected stopping-time complexity is a different quantity.
 
-On each call, a classical index selects one allowed pure input. The input is fresh and conditionally independent of the verifier's memory given that index. The verifier may keep arbitrary quantum memory, measure all collected outputs jointly, and choose future indices using any quantum instrument on its memory. The theorem includes those adaptive strategies.
+On each call, a classical index selects one allowed pure input. The input is fresh, conditionally independent of the verifier's memory given that index, and passes through the device once. The verifier may keep arbitrary quantum memory, measure all collected outputs jointly, and choose future indices using any quantum instrument on its memory. Theorem 3 includes those adaptive strategies; Theorem 4 uses the same access model under its product-channel promise.
 
 The input contract supplies prescribed preparations and system outputs. An allowed pure ray may be internally entangled across the system's subsystems. Entanglement between a fresh channel input and retained verifier memory, coherent superpositions of probe choices, arbitrary inputs outside the menu, recycling earlier outputs through the device, and access to its environment are additional resources. The lower bounds do not include those resources.
 
 Two target-reference implementations are distinguished:
 
-1. **Ideal target projectors.** The verifier can test the ideal output ray for each selected input. The exact leading sample coefficient is stated in this model. Preparation, compilation, and measurement costs are accounted for separately.
+1. **Ideal target projectors.** The verifier can test the ideal output ray for each selected input. Theorem 3 gives the exact leading sample coefficient as the risk threshold $`\delta`$ and allowable decision error $`\alpha`$ jointly tend to zero at fixed dimension and menu. Preparation, compilation, and measurement costs are accounted for separately.
 2. **Paid pure target copies.** Each comparison consumes a fresh trusted ideal output and a hypothesis output. An antisymmetric/SWAP test fails with probability $`e_i/2`$. This preserves the sampling exponents and gives a factor-two sufficient overhead, without asserting the same exact leading coefficient.
 
 The statistical model is described and proved in [Certification](certification.md). It is a certification problem for a fixed hypothesis. A hypothesis selected using training data requires fresh certification data, or a separate treatment of adaptive reuse of the data.
 
 ## 5. Optimal design and scalable application
 
-For any $`d\lt N\le d^2`$ pure probes, even with arbitrary weights and imbalance,
+For any $`d\lt N\le d^2`$ distinct pure probes with positive weights, allowing arbitrary weights and mean input states,
 
 ```math
 C_S\ge\frac{d(N-1)}{(d+1)(N-d)}.
@@ -136,7 +140,7 @@ C_S\ge\frac{d(N-1)}{(d+1)(N-d)}.
 
 Equality requires a uniformly weighted equiangular tight frame and is attained when such a frame exists. [Optimal design](optimal_design.md) proves this bound and its equality conditions. Combining it with the adaptive minimax theorem converts the coefficient into an all-strategy asymptotic sampling bound.
 
-The [product-channel application](product_channels.md) has a stronger structural promise: the relative channel is an exact tensor product of $`n`$ qubit channels and the target is a product unitary. Under this promise, adding a third global product probe changes the optimal sample cost from $`\Theta(n\delta^{-2}\log(1/\alpha))`$ to $`\Theta(\delta^{-1}\log(1/\alpha))`$, uniformly in $`n`$ for sufficiently small global error. Every global example still contains $`n`$ output qubits.
+The [product-channel application](product_channels.md) has a stronger structural promise: the relative channel is an exact tensor product of $`n`$ qubit channels and the target is a product unitary. For the two menus in Theorem 4, adding a third global product probe changes the optimal sample cost from $`\Theta(n\delta^{-2}\log(1/\alpha))`$ to $`\Theta(\delta^{-1}\log(1/\alpha))`$. These orders hold uniformly in $`n`$ for $`0\lt\delta\le1/8`$ and $`0\lt\alpha\le\alpha_*\lt1/2`$ at fixed positive $`\alpha_*`$. Every global call uses all $`n`$ local channels once and returns $`n`$ output qubits. The exact leading three-probe coefficient is a separate joint $`\delta,\alpha\to0`$ statement at fixed $`n`$.
 
 ## 6. Reading and verification
 

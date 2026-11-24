@@ -220,14 +220,14 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Conceptual connection:** Trace preservation constrains a whole set of Kraus operators at zero error more strongly than it constrains a single nearby operator direction.
 
-**Sources:** Watrous §2.2.2 as foundation; [Robustness](../science/robustness.md), [Mayer–Knill attribution](../references/RELATED_WORK.md#mayer-knill-2018).
+**Sources:** Watrous §2.2.2 as foundation; [Robustness](../science/robustness.md), [Mayer–Knill identification and upper bound](../references/RELATED_WORK.md#mayer-knill-2018), [Trureturing exponent dichotomy](../references/RELATED_WORK.md#trureturing-2026).
 
 <a id="m17"></a>
 ### M17. Coordinate supports diagnose the kernel
 
 **Central question:** How can a finite list of vectors reveal linear robustness?
 
-**Understanding target:** Build the coordinate-support graph from a basis selected from the menu and the supports of additional rays. Explain its relation to common eigenvalues and distinguish it from the overlap graph.
+**Understanding target:** Build the coordinate-support graph from a basis selected from the menu and the supports of additional rays. Explain its relation to common eigenvalues and distinguish it from the overlap graph. Connectivity detects a positive gap; the coefficient requires its quantitative value.
 
 **Dependencies and story role:** M02, M06, M15, M16. Make the abstract criterion directly checkable.
 
@@ -246,7 +246,7 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Conceptual connection:** Nonnormal common right-eigenoperators describe noise directions excluded by a Hamiltonian-only search.
 
-**Sources:** Watrous §2.2.2; [Robustness](../science/robustness.md), [Bridge 2](WATROUS_BRIDGE.md#hidden-noise).
+**Sources:** Watrous §2.2.2; [Robustness](../science/robustness.md), [Bridge 2](WATROUS_BRIDGE.md#hidden-noise), [Trureturing construction overlap](../references/RELATED_WORK.md#trureturing-2026).
 
 <a id="m19"></a>
 ### M19. The qubit example and the extra probe
@@ -279,7 +279,7 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Central question:** What can any ensemble achieve with a prescribed number of rays?
 
-**Understanding target:** Explain the universal support bound without assuming equal weights or balance. Interpret why equality forces a uniform equiangular tight frame, conditional on its existence, and why a weighted projective 2-design attains coefficient one.
+**Understanding target:** Explain the universal support bound without assuming equal weights or balance. Interpret why equality forces a uniform equiangular tight frame, conditional on its existence. Explain why the absolute gap bound holds at every support size, while attaining coefficient one requires a weighted projective 2-design and at least $`d^2`$ distinct rays.
 
 **Dependencies and story role:** M07, M11, M15, M20. Replace examples with an all-ensemble optimal-design statement.
 
@@ -357,7 +357,7 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Central question:** What connects local survival losses to global Haar risk?
 
-**Understanding target:** Explain the product formulas for entanglement fidelity and probe survival under exact tensor factorization. Distinguish global Haar averaging from a product test distribution.
+**Understanding target:** Explain the product formulas for entanglement fidelity and probe survival under a product-unitary target and exact tensor factorization of the relative channel. Distinguish global Haar averaging from a product test distribution.
 
 **Dependencies and story role:** M07, M12, M19, M25. Introduce the stronger promise for a separately uniform many-qubit result.
 
@@ -383,7 +383,7 @@ Dependencies name earlier milestones only. They organize concepts rather than pr
 
 **Central question:** How can one more global preparation remove the array-size repetition penalty?
 
-**Understanding target:** Explain the product inequality transferring local linear bounds to a full register. Interpret the optimized coefficient $`5D/(D+1)`$ and the matching order $`\delta^{-1}\log(1/\alpha)`$ for $`D=2^n`$.
+**Understanding target:** Explain the product inequality transferring local linear bounds to a full register. Interpret the optimized global coefficient $`5D/(D+1)`$ for $`D=2^n`$. With ideal target-output tests, distinguish the matching repetition order $`\delta^{-1}\log(1/\alpha)`$, uniform in $`n`$, from the exact leading sampling coefficient in the joint small-error, high-confidence limit at fixed $`n`$.
 
 **Dependencies and story role:** M19, M23–M25, M27, M28. Complete the scalable separation and its optimality.
 

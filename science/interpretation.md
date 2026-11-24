@@ -14,7 +14,7 @@ R\le C_S\epsilon_S,
 C_S=\frac1{(d+1)\mu_S}.
 ```
 
-This inequality holds for every CPTP hypothesis, independently of the optimizer, parametrization, or trajectory that produced it. It therefore identifies which training objectives can control the chosen test risk throughout that hypothesis class.
+This inequality holds for every CPTP hypothesis, independently of the optimizer, parametrization, or trajectory that produced it. Channel families arbitrarily close to the target approach its coefficient. It therefore identifies which training objectives can control the chosen test risk throughout that hypothesis class; its sharpness does not specify the exact worst-case risk at each finite loss.
 
 The theorem does not determine how a learner reaches a small loss. It does not analyze gradient concentration, optimization time, the amount of data needed to learn an unknown target, or the gate complexity of the learned operation. It also concerns the true ensemble loss. Estimating a loss after selecting the hypothesis from the same observations requires an additional statistical argument. The certification theorem uses fresh data after the hypothesis is fixed.
 
@@ -70,7 +70,7 @@ Here $`u\le\eta`$ is a physical assumption or an independently justified bound. 
 
 ## 4. A small menu can carry a large coefficient
 
-For unrestricted channels on a $`d`$-dimensional system, $`d`$ linearly independent pure probes always leave nonscalar common right eigenoperators. A suitably related $`(d+1)`$st ray can repair the exponent. The best possible coefficient at that support size is still
+For unrestricted channels on a $`d`$-dimensional system, $`d`$ linearly independent pure probes always leave nonscalar common right eigenoperators. Adding a ray with nonzero coordinates on every vector of that basis makes the coordinate-support graph connected and the variance gap positive. This tests the existence of a linear bound; its coefficient still requires the numerical value of the gap. The best possible coefficient at that support size is
 
 ```math
 C_S\ge\frac{d^2}{d+1}.
@@ -84,7 +84,7 @@ C_S\ge\frac{d(d+k-1)}{(d+1)k}.
 
 For $`k\ll d`$, this is of order $`d/k`$. One extra setting can therefore change the asymptotic precision exponent while leaving a coefficient that grows with dimension. Achieving a dimension-independent coefficient requires order $`d`$ additional support rays. Two mutually unbiased bases provide an established constant-order benchmark; the simplex attains the minimal-support optimum. These constructions and their prior attribution are recorded in [Related work](../references/RELATED_WORK.md).
 
-The bound concerns all weighted ensembles, including unbalanced ones. Its equality condition is a uniformly weighted equiangular tight frame, when one exists. At and above $`d^2`$ support points, a weighted projective 2-design attains the universal coefficient $`C_S=1`$ when available.
+The bound concerns all weighted ensembles, including unbalanced ones. Its equality condition is a uniformly weighted equiangular tight frame, when one exists. The absolute gap bound $`\mu_S\le1/(d+1)`$ holds for every support size. Attaining it requires at least $`d^2`$ distinct rays and is equivalent to a weighted projective 2-design, giving the universal coefficient $`C_S=1`$.
 
 Support size counts distinct allowable inputs. It does not force an experiment to visit every input. A verifier may sample a large menu and stop after relatively few repetitions. Conversely, a short menu can require many repetitions to resolve its weak error signal.
 
@@ -113,7 +113,7 @@ For a fixed finite menu and dimension, let $`\mu_*`$ be the maximum variance gap
 
 No relation between the two rates of convergence is needed. At fixed confidence and with arbitrary two-sided errors, the proof gives a finite bracket instead of asserting the same exact coefficient. Perfect completeness makes the coefficient exact at fixed confidence as well. The general theorem keeps dimension fixed; a sufficient onset condition is $`\delta\ll\mu_* /(d+1)`$.
 
-The fresh input is chosen through a classical label and is conditionally independent of retained verifier memory. An allowed ray may itself be entangled across the system. Entangling each new channel input with memory, coherently choosing the probe label, passing previous outputs through the channel again, or observing its environment changes the access model. The lower bound does not supply conclusions for those additional resources.
+The fresh input is chosen through a classical label, is conditionally independent of retained verifier memory, and passes once through the same memoryless device. An allowed ray may itself be entangled across the system. Entangling each new channel input with memory, coherently choosing the probe label, passing previous outputs through the channel again, or observing its environment changes the access model. The lower bound does not supply conclusions for those additional resources.
 
 Fresh trusted pure target copies give an alternative implementation of the comparison test. One copy and one hypothesis output yield rejection probability $`e_i/2`$ through the antisymmetric test. This preserves the precision exponents with a factor-two sufficient overhead. The exact optimal reference-copy coefficient is a separate question.
 
@@ -121,7 +121,7 @@ The favorable $`\delta^{-1}`$ law also depends on testing near a perfectly passi
 
 ## 6. A scalable consequence under exact tensor factorization
 
-For an exact tensor product of $`n`$ local qubit channels, with a product-unitary target, the [product-channel theorem](product_channels.md) has constants uniform in register size. For $`0\lt \delta\le1/8`$ and confidence bounded away from $`1/2`$:
+For a product-unitary target and an exact tensor product of $`n`$ qubit CPTP maps in the relative channel, the [product-channel theorem](product_channels.md) has constants uniform in register size. With ideal target-output tests, for $`0\lt \delta\le1/8`$ and confidence bounded away from $`1/2`$:
 
 | Available global probes | Optimal global examples |
 |---|---|
@@ -142,8 +142,8 @@ There are already dimension-independent process-fidelity bounds for arbitrary ch
 
 The proof pages establish the optimal global linear coefficient, its necessary and sufficient geometric criterion, the universal support bound and its equality conditions, the sharp unital coefficient and nonunital crossover, and the adaptive certification consequences. The product application supplies a separately uniform family in which one extra probe changes both the precision exponent and register-size dependence.
 
-The known exact-identification theorem, square-root upper bound, frame constructions, and fidelity converse framework retain their attribution in [Related work](../references/RELATED_WORK.md). The work here develops the missing geometric necessity, sharp constructions, universal optimization, and resulting operational statements within those foundations.
+The known exact-identification theorem, square-root upper bound, frame constructions, and fidelity converse framework retain their attribution in [Related work](../references/RELATED_WORK.md). The [Trureturing project](../references/RELATED_WORK.md#trureturing-2026) also gives the common right-eigenoperator exponent dichotomy under a common per-probe tolerance. Fixed positive sampling weights transfer the exponents to the weighted loss used here, with constants that can depend on the weights. The additional quantitative results determine the sharp coefficient for arbitrary ensembles, optimize it over weighted supports, and connect it to matching adaptive certification costs.
 
-Several extensions require additional work: the complete finite-error curve for arbitrary menus; certification with imperfect or untrusted references; approximate or correlated product structure; and joint dimension-and-precision limits beyond the proved product family. These questions do not follow from the present inequalities by dropping their assumptions.
+Several extensions require additional work: the exact finite-error envelope $`W_S(\varepsilon)=\sup_{\epsilon_S\le\varepsilon}R`$ and optimal finite-accuracy certification costs for arbitrary menus; certification with imperfect or untrusted references; approximate or correlated product structure; and joint dimension-and-precision limits beyond the proved product family. The global inequalities and finite call bounds constrain these quantities without determining them in full.
 
 The [finite checks](../verification/README.md) reproduce the concrete channels, matrices, and scalar formulas. Their role is to corroborate the displayed constructions. The universal and optimality claims rest on the analytical proofs.

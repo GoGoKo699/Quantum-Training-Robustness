@@ -7,7 +7,7 @@ The project answers Mayer and Knill's question about which identifying pure-stat
 ## Entry points
 
 - [README](README.md): Main question, results, scope, purpose, and contact.
-- [Scientific map](science/README.md): Reading routes and notation.
+- [Scientific map](science/README.md): Reading routes, notation, and the correspondence to the manuscript's four theorems, corollary, and proposition.
 - [Interpretation](science/interpretation.md): Consequences for training, physical promises, and resource accounting.
 
 ## Learning route
@@ -41,7 +41,7 @@ The learning map is independent of individual progress. Explain the science thro
 - [BibTeX references](references/references.bib): Primary-source bibliography.
 - [Verification guide](verification/README.md): Commands, recorded environment, seed, tolerances, and limits of finite checks.
 - [NumPy checks](verification/check_math.py): Explicit matrices, spectra, channels, and product formulas.
-- [Quantitative figures](verification/Graph/README.md): Python-generated qubit witness curves and finite certification bounds, pinned dependencies, plotted values, and regeneration checks.
+- [Table I and companion plots](verification/Graph/README.md): Table reproduction and optional illustrations of the exact qubit curves and finite certification bounds, pinned dependencies, plotted values, and regeneration checks. The manuscript contains no figures.
 - [Manuscript table reproduction](verification/Graph/README.md#reproduce-the-manuscript-table): Call counts for all five parameter pairs in Table I.
 - [Dependency](verification/requirements.txt): NumPy version range.
 - [License](LICENSE): MIT license.
@@ -56,8 +56,8 @@ Exact identification, finite-loss robustness, and statistical certification are 
 
 The exact sampling coefficient for a fixed menu holds as both target error and decision error tend to zero, with system dimension fixed and ideal target-output projectors. Fixed-confidence two-sided testing has a bracket; perfect completeness has a sharper coefficient statement.
 
-The adaptive lower bounds allow quantum output memory and collective readout, but each input is fresh and chosen by a classical label. The proofs do not grant input entanglement with retained memory, coherent probe choice, output recycling, or environment access.
+The adaptive lower bounds allow quantum output memory and collective readout. Each input is fresh and chosen by a classical label; conditional on that label, its preparation is independent of retained memory. The proofs do not grant input entanglement with retained memory, coherent probe choice, output recycling, or environment access.
 
-The product-channel application requires exact tensor factorization. Every global example includes all n qubits and local channel uses. Its uniform scaling is proved separately from the fixed-dimension general theorem.
+The product-channel application requires a product-unitary target and exact tensor factorization. Every global example includes all n qubits and local channel uses. Its order bounds are uniform in n, while the exact leading three-probe coefficient is stated at fixed n.
 
 Training-loss estimates used to select a hypothesis are not automatically valid fresh certification data. Finite numerical checks corroborate constructions; they do not prove universal theorems or literature priority.

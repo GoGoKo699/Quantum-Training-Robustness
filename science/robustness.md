@@ -1,6 +1,8 @@
 # Robustness from the geometry of pure probes
 
-A finite set of pure probes can determine a unitary channel exactly while giving only a square-root bound on its error under arbitrary channel mismatch. The distinction is controlled by the operators for which every probe is a right eigenvector. A scalar common-eigenoperator space gives a linear bound with an exact coefficient; a larger space supplies a physical channel that attains the square-root exponent.
+A finite set of pure probes can determine a unitary channel exactly while giving only a square-root bound on its error under arbitrary channel mismatch. The distinction is controlled by the operators for which every probe is a right eigenvector. Among identifying ensembles, a scalar common-eigenoperator space gives a linear bound with an exact coefficient; a larger space supplies a physical channel family that attains the square-root exponent.
+
+**Manuscript correspondence.** This page gives the proofs of Theorem 1 (sharp linear robustness) and Corollary 1 (robustness classification), stated in Section III and developed in Appendix A of *Probe Geometry and the Cost of Quantum Gate Certification*.
 
 The dimension, loss functions, and access assumptions are fixed in [the model](model.md). In this page, $`d\geq 2`$ and the finite ensemble $`S=\{(p_i,P_i)\}_{i=1}^N`$ are fixed, each $`p_i>0`$, and $`\sum_i p_i=1`$. The target is unitary, and $`\mathcal E=\mathcal U^\dagger\circ\mathcal V`$ denotes the relative CPTP channel. This change of notation does not supply an inverse query to the target.
 
@@ -92,7 +94,7 @@ Positivity of every weight implies $`\ker Q_S=\mathcal A_S`$. The scalar matrice
 \mu_S>0\quad\Longleftrightarrow\quad\mathcal A_S=\mathbb CI.
 ```
 
-**Theorem 1.** The following conditions are equivalent:
+**Theorem 1 (sharp linear robustness).** The following conditions are equivalent:
 
 1. There is a finite constant $`C`$ such that $`R(\mathcal E)\leq C\epsilon_S(\mathcal E)`$ for every CPTP channel $`\mathcal E`$.
 2. $`\mathcal A_S=\mathbb CI`$.
@@ -104,7 +106,7 @@ When they hold, the smallest possible coefficient is
 \boxed{C_S=\frac{1}{(d+1)\mu_S}.}
 ```
 
-This is the optimal coefficient of a global linear inequality. Its sharpness can be witnessed by channels arbitrarily close to the identity.
+This is the optimal coefficient of a global linear inequality, valid at every error level. The risk-to-loss ratio approaches this coefficient along channels tending to the identity. We set $`C_S=+\infty`$ when $`\mu_S=0`$.
 
 ### Proof of the upper bound
 
@@ -249,13 +251,15 @@ For example, choose a positive threshold $`\varepsilon_0\leq\min\{p_{\min}s_0,1\
 
 ## The sharp robustness trichotomy
 
-**Theorem 2.** For a fixed finite pure ensemble with positive weights, the worst-case curve has exactly the following alternatives.
+**Corollary 1 (robustness classification).** For a fixed finite pure ensemble with positive weights, the worst-case curve has exactly the following alternatives.
 
 | Probe geometry | Behavior as the loss tends to zero |
 |---|---|
 | The probes do not span, or the overlap graph is disconnected | $`W_S(0)>0`$ |
 | The probes span, the overlap graph is connected, and $`\mathcal A_S\neq\mathbb CI`$ | $`W_S(\varepsilon)=\Theta_S(\sqrt\varepsilon)`$ |
-| $`\mathcal A_S=\mathbb CI`$ | $`W_S(\varepsilon)=C_S\varepsilon+O(\varepsilon^2)`$ |
+| $`\mathcal A_S=\mathbb CI`$ | $`W_S(\varepsilon)=C_S\varepsilon+O_S(\varepsilon^2)`$ |
+
+The asymptotic constants may depend on the fixed ensemble and dimension.
 
 The first and third rows follow from the preceding results. For the middle row, choose a nonscalar $`L\in\mathcal A_S`$. The square-root upper bound is already available. It remains to show that the quadratic coefficient of the physical witness is positive.
 
@@ -303,6 +307,6 @@ When $`L\psi_i=\lambda_i\psi_i`$, the first derivative of the survival infidelit
 =-\frac12\left[(I-P_i)BP_i+P_iB(I-P_i)\right].
 ```
 
-Its expectation in $`P_i`$ is zero, although the off-diagonal matrix terms can survive. Therefore the probes are not being asserted to be stationary states of a dissipative evolution. Common jump eigenvectors appear in the established theory of pure stationary states, where an additional effective-Hamiltonian condition is required; see [Kraus et al., Theorem 1](../references/RELATED_WORK.md#kraus-et-al-2008).
+Its expectation in $`P_i`$ is zero, although the off-diagonal matrix terms can survive. The cancellation therefore concerns the survival loss. Pure stationary states require the common jump-eigenvector condition together with an effective-Hamiltonian condition; see [Kraus et al., Theorem 1](../references/RELATED_WORK.md#kraus-et-al-2008).
 
-The channel family is necessarily nonunital in the singular identifying case. [The nonunitality analysis](nonunitality.md) proves this statement and gives the sharp joint dependence on training error and a nonunitality budget. [Probe geometry](probe_geometry.md) supplies computable criteria and exact examples. [Certification](certification.md) turns the loss exponents into optimal experimental sample exponents.
+The channel family is necessarily nonunital in the singular identifying case. [The nonunitality analysis](nonunitality.md) proves this statement and gives the sharp joint dependence on training error and a nonunitality budget. [Probe geometry](probe_geometry.md) supplies a criterion for gap positivity and quantitative examples. [Certification](certification.md) turns the loss exponents into optimal experimental sample exponents.

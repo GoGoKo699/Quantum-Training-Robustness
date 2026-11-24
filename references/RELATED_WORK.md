@@ -22,11 +22,17 @@ The main distinction is between **exact identification**, **stability of that id
 
 [Mayer and Knill (2018)](https://doi.org/10.1103/PhysRevA.98.052326), *Quantum Process Fidelity Bounds from Sets of Input States*, is the closest prior work. Theorem 1 proves that pure rays identify a unitary among all CPTP channels exactly when they span the Hilbert space and their nonorthogonality graph is connected. Theorem 2 gives a square-root upper bound on process infidelity. Theorem 3 proves linear bounds for equiangular tight frames (ETFs), including the simplex. The discussion after Theorem 2 explicitly asks which input geometry makes the square-root term vanish. Their conclusion additionally asks about optimal probe sets at fixed cardinality and finite error.
 
-The common **right-eigenoperator** criterion answers the exponent question. For a positive variance gap, the work gives the exact global linear coefficient. A physical dissipative channel attains the square-root order for identifying menus with zero gap. The support theorem bounds the global linear coefficient over arbitrary weighted ensembles at fixed cardinality and characterizes equality. The full finite-error optimization concerns the entire worst-case risk curve at each loss tolerance.
+The common **right-eigenoperator** criterion answers the exponent question. For a positive variance gap, the work gives the exact global linear coefficient, approached by channel families near the identity. For identifying menus with zero gap, a physical dissipative family attains square-root order. The support theorem bounds the global linear coefficient over arbitrary weighted ensembles with $`d\lt N\le d^2`$ distinct rays and characterizes equality by uniform ETFs whenever they exist. This settles the linear-coefficient version of the fixed-cardinality design question. The full finite-error optimization concerns the entire worst-case risk curve at each loss tolerance.
 
 <a id="trureturing-2026"></a>
 
-The [Trureturing project (2026)](https://github.com/the-omega-institute/trureturing/blob/b444c71ced55f52e471cb1a1e7f3d5e6e391e193/Problems/mayer-knill-infidelity-scaling.md) formalizes the same exponent dichotomy in Lean for a common per-probe tolerance, using the same square-root Kraus completion. For fixed positive sampling weights, the weighted mean lies between the maximum probe loss times the smallest weight and the maximum loss itself. This comparison gives the same exponents under both loss conventions.
+The [Trureturing project (2026)](https://github.com/the-omega-institute/trureturing/blob/b444c71ced55f52e471cb1a1e7f3d5e6e391e193/Problems/mayer-knill-infidelity-scaling.md) also gives the same exponent dichotomy for a common per-probe tolerance, uses the same square-root Kraus completion, and reports a Lean formalization. For a fixed finite menu with fixed positive sampling weights, put $`s=\max_i e_i`$ and $`p_{\min}=\min_i p_i`$. Then
+
+```math
+p_{\min}s\le\epsilon_S\le s.
+```
+
+This comparison transfers the exponents between the two loss conventions; their sharp coefficients can differ, and the comparison is not uniform as $`p_{\min}`$ tends to zero. The additional quantitative results here are the sharp global coefficient for arbitrary ensembles, optimization over unrestricted weighted supports, and matching adaptive certification bounds under the fresh-input model.
 
 ## Balanced verification and the number of settings
 
@@ -34,15 +40,16 @@ The [Trureturing project (2026)](https://github.com/the-omega-institute/truretur
 
 [Zhu and Zhang (2020)](https://doi.org/10.1103/PhysRevA.101.042316), *Efficient verification of quantum gates with local operations*, formulate the maximum passing probability as an optimization over channels for arbitrary weighted input ensembles in Section III. Section IV gives explicit spectral-gap bounds for balanced ensembles, whose average input is maximally mixed. Weighted projective 2-designs attain the optimum in their process-verification model.
 
-For ideal output-projector tests and balanced inputs, the present variance gap is their preparation gap divided by $`d`$. In the notation of this project,
+For ideal output-projector tests and balanced inputs, the present variance gap is their preparation gap divided by $`d`$. A positive preparation gap gives a linear bound. In the notation of this project,
 
 ```math
 \mu_S=\frac{\nu_{\mathrm P}}{d},
 \qquad
-C_S=\frac{d}{(d+1)\nu_{\mathrm P}}.
+C_S=\frac{d}{(d+1)\nu_{\mathrm P}}
+\quad(\nu_{\mathrm P}>0).
 ```
 
-The balanced case is thus consistent with their existing verification theory. The extension here is the exact coefficient and necessity criterion for unbalanced menus, together with matching channel adversaries and the resulting optimal precision laws.
+The balanced positive-gap case is thus consistent with their existing verification theory. Balance alone does not ensure identification or a positive gap. The extension here is the exact coefficient and necessity criterion for arbitrary, possibly unbalanced menus, together with matching channel adversaries and the resulting optimal precision laws.
 
 <a id="li-et-al-2021"></a>
 
@@ -68,7 +75,7 @@ The balanced case is thus consistent with their existing verification theory. Th
 
 This is already a dimension-independent linear bound based on product inputs. It uses the full product-SIC ensemble and does not require the channel itself to factor into independent local channels. The note presents numerical evidence for tightness of its lower bound; the stated analytic result is the inequality.
 
-The three-setting result in this project imposes a different promise: the implemented channel and target both factor over the qubits. Under that promise, three **uniform global strings** suffice for a dimension-independent coefficient. Two local directions have a matching $`n/\delta^2`$ certification cost, even if all mixed strings from those directions are allowed; a third gives order $`1/\delta`$. This combines a much smaller global menu with a stronger channel assumption. It does not replace the arbitrary-channel product-SIC guarantee. Each full-array repetition still contains $`n`$ output qubits and uses all $`n`$ local channels.
+The three-setting result in this project assumes a product-unitary target and exact tensor factorization of the relative channel into qubit CPTP maps. Under that promise, three **uniform global strings** suffice for a dimension-independent coefficient. With ideal target-output tests, two local directions have a matching cost of order $`n\delta^{-2}\log(1/\alpha)`$, even if all mixed strings from those directions are allowed; a third gives order $`\delta^{-1}\log(1/\alpha)`$. These orders are uniform in register size, while the exact leading sampling coefficient takes the small-error, high-confidence limit at fixed $`n`$. This combines a much smaller global menu with a stronger channel assumption. Each full-array repetition still contains $`n`$ output qubits and uses all $`n`$ local channels.
 
 ## Dissipative variance and stationary-state precedent
 
@@ -102,7 +109,7 @@ The elementary block-fidelity proof in this project is a specialization of that 
 =\frac{1-\mathrm{Tr}(\rho P)}2.
 ```
 
-The extension to a mixed device output follows by linearity. Each trial consumes one device use and one fresh trusted target copy. Such references preserve the precision exponents with a constant overhead; noisy or untrusted references are a different access model.
+The extension to a mixed device output follows by linearity. Each trial consumes one device use and one fresh trusted target copy. This protocol preserves the precision exponents; in the positive-gap regime, twice the leading ideal-projector call bound is sufficient. Optimality of that factor for paid-reference protocols remains a separate question. Noisy or untrusted references require a different access model.
 
 ## Fidelity convention and the extent of the results
 
@@ -116,4 +123,4 @@ F_{\mathrm{avg}}=\frac{dF_{\mathrm e}+1}{d+1}.
 
 Here, state fidelity in the statistical converse is **squared** Uhlmann fidelity. This convention must be distinguished from the root fidelity used in some textbooks. All process-fidelity coefficients from prior work are converted to the Haar-risk convention before comparison.
 
-The support bound and its equality characterization concern the best global **linear** coefficient and the corresponding leading near-target sampling coefficient. They leave the complete finite-error curve separate. The certification experiment uses fresh data after the candidate operation is fixed. It establishes neither the minimax cost of learning an unknown unitary nor a generalization guarantee for adaptively reused training data. The inverse target channel is used algebraically to define the relative channel; its experimental implementation is not a free resource.
+The support bound and its equality characterization concern the best global **linear** coefficient and the corresponding leading near-target sampling coefficient. The global loss bound and finite call bounds constrain the exact finite-error envelope $`W_S(\varepsilon)=\sup_{\epsilon_S\le\varepsilon}R`$ and optimal finite-accuracy certification costs; determining those quantities for general menus remains open. The certification experiment uses fresh data from the same memoryless device after the candidate operation is fixed. The sharp call coefficients assume ideal target-output tests. They establish neither the minimax cost of learning an unknown unitary nor a generalization guarantee for adaptively reused training data. The inverse target channel is used algebraically to define the relative channel; its experimental implementation is not a free resource.

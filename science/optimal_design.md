@@ -2,6 +2,8 @@
 
 The number of available training rays limits the best robustness coefficient, even when their sampling weights are optimized and their average state is unbalanced. This page proves the sharp bound and characterizes equality. The constructions that attain it, when they exist, are the symmetric frames already used by [Mayer and Knill](../references/RELATED_WORK.md#mayer-knill-2018). The result here establishes optimality against all weighted pure-state ensembles for the global linear coefficient. It does not determine the full finite-error worst-case fidelity curve.
 
+**Manuscript correspondence.** The support bound, equality characterization, and absolute design optimum are Theorem 2 in Section IV. Appendix C contains the proof for arbitrary sampling weights and mean input states.
+
 The [model](model.md) fixes the operational meaning of a training ray and distinguishes its catalogue size from the number of channel calls. The [robustness theorem](robustness.md) supplies the exact relation between the spectral gap below and channel infidelity. The [certification theorem](certification.md#exact-optimized-sampling-coefficient) shows that the same optimum controls adaptive certification with quantum output memory.
 
 ## Notation and statement
@@ -31,7 +33,7 @@ C_S=\frac{1}{(d+1)\mu_S}.
 
 Here $`\epsilon_S`$ is the weighted survival infidelity and $`R_H`$ is Haar average infidelity relative to the unitary target. Set $`C_S=+\infty`$ when no finite linear coefficient exists. The relative-channel notation is an algebraic reduction and supplies no inverse-target oracle.
 
-**Theorem 1, support bound.** Every weighted pure-state ensemble satisfies the following statements.
+**Theorem 2 (optimal gap at fixed support size).** Every weighted pure-state ensemble satisfies the following statements.
 
 **1.** If $`N\leq d`$, then $`\mu_S=0`$.
 
@@ -43,7 +45,7 @@ Here $`\epsilon_S`$ is the weighted survival infidelity and $`R_H`$ is Haar aver
 C_S\geq\frac{d(N-1)}{(d+1)(N-d)}.
 ```
 
-Equality holds exactly when the rays form an equiangular tight frame and all weights are $`1/N`$.
+Equality holds exactly when the rays form an equiangular tight frame and all weights are $`1/N`$. The bound is attained whenever such a frame exists at the specified dimension and cardinality.
 
 **3.** For every $`N`$,
 
@@ -62,7 +64,7 @@ An equiangular tight frame in this statement means
 \quad(i\neq j).
 ```
 
-The equality characterization is conditional on existence in the specified dimension and cardinality. It does not assert that an equiangular tight frame exists for every $`d\lt N\leq d^2`$. At $`N=d^2`$, the frame and projective-design characterizations agree.
+At $`N=d^2`$, the frame and projective-design characterizations agree.
 
 ## Operator representation
 
@@ -327,6 +329,8 @@ C_*=\frac1{(d+1)\mu_*}
 ```
 
 The simplex $`\Delta_N`$ includes zero weights, since an optimizer may choose not to use an available ray. The objective is continuous and concave, and a maximum exists. If strictly positive weights are required, mixing an optimizer with any positive distribution approaches the same optimum.
+
+The weight optimization is a semidefinite program with a generic matrix constraint on the $`d^2-1`$ dimensional traceless operator space. For a spanning menu, the [coordinate-support criterion](probe_geometry.md#a-coordinate-support-criterion) decides gap positivity; a quantitative calculation is still needed for its optimal value.
 
 The support theorem applies to the positive support of each candidate distribution. Since the gap upper bound increases strictly with support size below $`d^2`$, an $`N`$-ray menu with $`d\lt N\leq d^2`$ can attain the stated $`N`$-ray bound only by using every ray, uniformly, in an equiangular tight frame. For $`N\geq d^2`$, it attains $`C_*=1`$ exactly when its rays admit weights forming a projective $`2`$-design, possibly on a smaller subcollection.
 

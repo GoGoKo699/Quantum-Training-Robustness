@@ -2,6 +2,8 @@
 
 The robustness criterion can be checked by linear algebra on the input vectors. A basis extracted from the probe set reveals which coordinate directions an additional probe connects. This yields exact examples where one extra ray changes the loss exponent, and it also separates that qualitative repair from the numerical size of the robustness coefficient.
 
+**Manuscript correspondence.** The coordinate criterion and witnesses support Theorem 1 and Corollary 1 in Section III; the explicit gap and weight calculations also appear in Section IV. Appendix B gives the corresponding derivations. The coordinate-support proposition below is a supporting result, distinct from the manuscript's Proposition 1 on noise promises.
+
 Throughout, $`d\geq2`$, all probe weights are positive, and $`Q_S`$, $`\mu_S`$, and $`R`$ have the definitions in [robustness](robustness.md). The number of distinct rays is $`N`$. Experimental repetitions are counted separately in [certification](certification.md).
 
 ## A coordinate-support criterion
@@ -14,7 +16,7 @@ Assume the probes span $`\mathbb C^d`$. Select a basis $`b_1,\ldots,b_d`$ from t
 
 Construct a graph with vertices $`1,\ldots,d`$. Join $`j`$ and $`k`$ if some extra probe has both $`c_{ij}\neq0`$ and $`c_{ik}\neq0`$. Call this the **coordinate-support graph**.
 
-**Proposition 1.** If this graph has $`m`$ connected components, then
+**Coordinate-support proposition.** If this graph has $`m`$ connected components, then
 
 ```math
 \mathcal A_S
@@ -25,6 +27,8 @@ Construct a graph with vertices $`1,\ldots,d`$. Join $`j`$ and $`k`$ if some ext
 ```
 
 In particular, $`\mu_S>0`$ if and only if the coordinate-support graph is connected.
+
+This graph decides positivity of the gap. Evaluating its numerical value directly requires an eigenvalue problem on the $`d^2-1`$ dimensional traceless operator space; connectivity alone does not determine the sharp coefficient. The symmetric examples below permit explicit spectral calculations.
 
 **Proof.** Every common right-eigenoperator is diagonal in the selected basis, so it has the form displayed above. If it also has $`\psi_i`$ as an eigenvector with eigenvalue $`\lambda_i'`$, comparison of the unique basis coordinates gives
 
@@ -51,7 +55,7 @@ Two graphs enter the theory for different purposes.
 | Overlap graph | Probe rays; a nonzero inner product gives an edge | With spanning, exact identification of the unitary target |
 | Coordinate-support graph | Selected basis vectors; simultaneous nonzero coordinates in an extra probe give an edge | A scalar common right-eigenoperator space and linear robustness |
 
-The first property is the known [Mayer–Knill identification theorem](../references/RELATED_WORK.md#mayer-knill-2018), also used in [Li et al.](../references/RELATED_WORK.md#li-et-al-2021). The second follows directly from Proposition 1 and the sharp robustness theorem.
+The first property is the known [Mayer–Knill identification theorem](../references/RELATED_WORK.md#mayer-knill-2018), also used in [Li et al.](../references/RELATED_WORK.md#li-et-al-2021). The second follows from the coordinate-support proposition and the sharp robustness theorem.
 
 Exactly $`d`$ independent rays form a basis with no extra probes. Their coordinate-support graph has $`d`$ isolated vertices and their common right-eigenoperator space has dimension $`d`$. If their overlap graph is connected, they identify the target exactly but lie in the square-root regime for arbitrary CPTP alternatives.
 

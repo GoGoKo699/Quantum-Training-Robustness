@@ -6,7 +6,7 @@
 
 **John Watrous, *The Theory of Quantum Information*, Cambridge University Press, 2018.** Use the [author's book page](https://cs.uwaterloo.ca/~watrous/TQI/) and its standard-layout chapters. Section numbers below refer to the author's 2018 pre-publication version, whose preface is dated January 2018, not to an independently paginated edition. The [errata](https://cs.uwaterloo.ca/~watrous/TQI/TQI.errata.pdf) remain available from that page. The book files are for personal use and are not redistributed here.
 
-The book supplies the mathematical language. The research-specific steps are developed in this repository and attributed in [Related work](../references/RELATED_WORK.md). In particular, the common right-eigenoperator criterion, optimal weighted coefficient, support bound, and restricted-input certification theorem are not assigned to Watrous. The established identification and square-root upper bounds retain their Mayer–Knill attribution.
+The book supplies the mathematical language. The research-specific steps are developed in this repository and attributed in [Related work](../references/RELATED_WORK.md). The established identification and square-root upper bounds retain their Mayer–Knill attribution. The [Trureturing project](../references/RELATED_WORK.md#trureturing-2026) also gives the common right-eigenoperator exponent dichotomy and square-root Kraus completion. The sharp arbitrary-ensemble coefficient, unrestricted weighted support optimization, and fresh-input adaptive certification bounds are additional quantitative results developed here.
 
 Use the source sections when their concepts enter the project; reading the entire book is not a prerequisite. The [milestone map](MILESTONES.md) follows the project's argument rather than the book's chapter order.
 
@@ -118,7 +118,7 @@ This is not ordinary amplitude damping alone: its dilation includes a conditiona
 <a id="geometry-and-noise"></a>
 ## Bridge 3: distinguish three kinds of structure
 
-The **overlap graph** joins training rays with nonzero inner product. With spanning, its connectivity gives the established exact-identification criterion. The **coordinate-support graph** instead starts from a basis extracted from the menu and asks which coordinates extra rays connect. Its connectivity detects a scalar common right-eigenoperator space and hence linear robustness. The two graphs answer different questions.
+The **overlap graph** joins training rays with nonzero inner product. With spanning, its connectivity gives the established exact-identification criterion. The **coordinate-support graph** instead starts from a basis extracted from the menu and asks which coordinates extra rays connect. Its connectivity detects a scalar common right-eigenoperator space and hence linear robustness. It tests positivity of the gap; the coefficient requires a quantitative gap calculation.
 
 A positive gap need not be large. The basis-plus-uniform-ray menu repairs the exponent but still has an optimized coefficient growing with dimension. [Optimal design](../science/optimal_design.md) proves that every weighted ensemble with $`d\lt N\le d^2`$ obeys
 
@@ -126,7 +126,7 @@ A positive gap need not be large. The basis-plus-uniform-ray menu repairs the ex
 C_S\ge\frac{d(N-1)}{(d+1)(N-d)}.
 ```
 
-Balance is a consequence of equality, not an assumed resource. The equality frames are established constructions and exist only at permitted dimension/cardinality pairs. A weighted projective 2-design attains the absolute coefficient one.
+Balance is a consequence of equality, not an assumed resource. The equality frames are established constructions and exist only at permitted dimension/cardinality pairs. The absolute gap bound $`\mu_S\le1/(d+1)`$ holds for every support size. Attaining it requires a weighted projective 2-design with at least $`d^2`$ distinct rays and gives coefficient one. These are global linear bounds; the exact worst-case risk at each finite loss can lie below the line.
 
 The physical hypothesis class is another independent choice. For unital alternatives, $`\mathcal E(I)=I`$, a commutator form replaces the one-sided variance and gives linear control on every connected spanning menu. The [nonunitality frontier](../science/nonunitality.md) quantifies the crossover using a separately supplied physical promise on $`\mathcal E(I/d)`$. Unital does not mean noiseless; independence across sites is a different promise again.
 
@@ -147,7 +147,7 @@ T\ge\frac{\log[1/(4\alpha(1-\alpha))]}{-\log(1-b)}.
 
 Combining this with the physical minimax adversary and the survival protocol gives the exact leading coefficient $`1/[(d+1)\mu_*]`$ as $`\delta,\alpha\to0`$, with the menu and dimension fixed. At fixed confidence, unrestricted two-sided testing has a bracket; perfect completeness gives a sharper statement. These limits must not be replaced by an unproved uniform-in-dimension claim.
 
-Fresh trusted pure reference copies permit a SWAP comparison with rejection probability $`e_i/2`$. Each comparison consumes the reference as well as a device output. Fixed noisy baselines are different: their output fidelity can change only quadratically in an additive risk difference, restoring a quadratic sampling cost even for a good menu.
+Fresh trusted pure reference copies permit a SWAP comparison with rejection probability $`e_i/2`$. Each comparison consumes the reference as well as a device output. Twice the leading ideal-projector call bound is sufficient in the positive-gap regime; the optimal coefficient for paid-reference protocols remains separate. Fixed noisy baselines are different: their output fidelity can change only quadratically in an additive risk difference, restoring a quadratic sampling cost even for a good menu.
 
 <a id="array"></a>
 ## Bridge 5: from local noise to a whole-register consequence
@@ -164,7 +164,7 @@ where $`y_{jr}`$ is site $`j`$'s survival loss on local ray $`r`$. Haar risk sti
 
 Spreading the hidden qubit noise across the sites makes the global risk of order $`nt`$ while the two-direction survival loss is of order $`nt^2`$. Calibrating $`t`$ to $`\delta/n`$ produces the lower-bound signal of order $`\delta^2/n`$. The full proof controls constants uniformly for $`0\lt \delta\le1/8`$; it does not infer a uniform theorem from this heuristic expansion.
 
-Adding the third global input transfers the local linear inequality through the product formula. The [exact array theorem](../science/product_channels.md) yields optimal repetition orders
+Adding the third global input transfers the local linear inequality through the product formula. With ideal target-output tests, the [exact array theorem](../science/product_channels.md) yields optimal repetition orders
 
 ```math
 T_2^\star=\Theta\!\left(n\delta^{-2}\log(1/\alpha)\right),
@@ -172,7 +172,7 @@ T_2^\star=\Theta\!\left(n\delta^{-2}\log(1/\alpha)\right),
 T_3^\star=\Theta\!\left(\delta^{-1}\log(1/\alpha)\right).
 ```
 
-A repetition still uses all $`n`$ local channels and returns $`n`$ qubits. Correlated channels, correlated mixtures of product channels, and uncontrolled preparation/readout noise are not covered by the independence promise. The support bound for arbitrary $`D`$-dimensional channels and the three-probe product theorem concern different hypothesis classes, so they do not conflict.
+These orders are uniform in $`n`$. The optimized three-probe global coefficient is $`5D/(D+1)`$; its exact leading sampling interpretation takes the joint small-error, high-confidence limit at fixed $`n`$. A repetition still uses all $`n`$ local channels and returns $`n`$ qubits. Correlated channels, correlated mixtures of product channels, and uncontrolled preparation/readout noise are not covered by the independence promise. The support bound for arbitrary $`D`$-dimensional channels and the three-probe product theorem concern different hypothesis classes, so they do not conflict.
 
 ## Reconstruct the complete story
 

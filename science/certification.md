@@ -2,11 +2,13 @@
 
 The robustness gap has an operational meaning: it determines the optimal high-confidence precision coefficient for certifying a fixed quantum operation from a prescribed catalogue of fresh pure inputs. Quantum storage, collective output measurements, and adaptive classical choice of later probes do not remove the geometry-dependent obstruction.
 
+**Manuscript correspondence.** This page proves **Theorem 3 (Optimal leading certification cost)** and develops its finite-sample and reference-copy extensions, corresponding to Section VI and Appendix E. Its exact coefficient takes $`\delta,\alpha\to0`$ jointly at fixed dimension and menu; the [fixed-confidence bounds](#exact-optimized-sampling-coefficient) distinguish this limit from fixed-confidence testing with two-sided error.
+
 This page proves the statistical statement, including a finite-sample bound and the confidence qualification needed for an exact coefficient. The cq fidelity step is an elementary specialization of the amortization-collapse machinery in [Wilde, Berta, Hirche, and Kaur](../references/RELATED_WORK.md#wilde-et-al-2020), particularly their Lemma 26 at sandwiched Rényi order $`1/2`$. The contribution established here is the reduction from training geometry to an exact channel adversary, together with the resulting sharp coefficient and support law.
 
 ## Certification task and access contract
 
-Fix a finite menu of normalized pure rays $`S=\{P_1,\ldots,P_N\}`$ in dimension $`d\geq2`$. The target is a unitary $`U`$, and the device implements a fixed memoryless channel $`\mathcal V`$. Test
+Fix a finite menu of distinct normalized pure rays $`S=\{P_1,\ldots,P_N\}`$ in dimension $`d\geq2`$. The target is a unitary $`U`$, and the device implements the same memoryless channel $`\mathcal V`$ on every call. Test
 
 ```math
 H_0:\mathcal V=\mathcal U,
@@ -21,7 +23,7 @@ The sample budget $`T`$ is a worst-case cap on the number of device calls. Early
 The following resources are allowed.
 
 - Before each device call, a common quantum instrument may act on all retained outputs, classical records, and ancillary memory to choose a classical label $`i`$.
-- The input to that call is a fresh copy of $`P_i`$, conditionally independent of the retained memory given that classical label.
+- The input to that call is a fresh copy of $`P_i`$, conditionally independent of the retained memory given that classical label, and passes through the device once.
 - The verifier may keep every output coherently, process outputs and memory jointly, and choose subsequent labels adaptively.
 - A final collective measurement may act on the entire retained state.
 
@@ -49,7 +51,7 @@ Q_i(A)=\bigl\|(I-P_i)A|\psi_i\rangle\bigr\|^2,
 Q_p(A)=\sum_i p_iQ_i(A).
 ```
 
-For a fixed positive distribution $`p`$, denote its gap by $`\mu_S`$. For the menu with optimized weights, put
+For a fixed positive distribution $`p`$, denote its gap by $`\mu_S`$. The sampling simplex is $`\Delta_N=\{p\in\mathbb R^N:p_i\ge0,\sum_i p_i=1\}`$. For the menu with optimized weights, put
 
 ```math
 \mu_*=
@@ -268,7 +270,7 @@ The lower bound uses a coarse quadratic residual for a transparent finite formul
 
 ## Exact optimized sampling coefficient
 
-**Theorem 3.** For fixed $`d`$ and fixed finite menu $`S`$ with $`\mu_*>0`$, and with ideal target-output projectors available,
+**Theorem 3 — Optimal leading certification cost.** For fixed $`d`$ and fixed finite menu $`S`$ with $`\mu_*>0`$, and with ideal target-output projectors available, the optimal worst-case call cap over all verifiers in the [access model above](#certification-task-and-access-contract) satisfies
 
 ```math
 \boxed{
