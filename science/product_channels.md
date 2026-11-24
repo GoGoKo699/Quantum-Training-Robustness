@@ -41,29 +41,29 @@ The risk $`R`$ is the Haar-average infidelity on the full register, including en
 
 **Theorem 4 — Certification of independent qubits.** Under this exact-product promise and with ideal target-output projectors available:
 
-1. For every fixed $`0\lt\alpha_*\lt1/2`$, constants independent of $`n,\delta,\alpha`$ give
+**(i)** For every fixed $`0\lt\alpha_*\lt1/2`$, constants independent of $`n,\delta,\alpha`$ give
 
-   ```math
-   T_2^\star=\Theta\!\left(n\delta^{-2}\log(1/\alpha)\right),\qquad
-   T_3^\star=\Theta\!\left(\delta^{-1}\log(1/\alpha)\right)
-   ```
+```math
+T_2^\star=\Theta\!\left(n\delta^{-2}\log(1/\alpha)\right),\qquad
+T_3^\star=\Theta\!\left(\delta^{-1}\log(1/\alpha)\right)
+```
 
-   for $`n\ge1`$, $`0\lt\delta\le1/8`$, and $`0\lt\alpha\le\alpha_*`$. The two-probe lower bound also holds on the full menu of mixed tensor strings from the two local directions.
+for $`n\ge1`$, $`0\lt\delta\le1/8`$, and $`0\lt\alpha\le\alpha_*`$. The two-probe lower bound also holds on the full menu of mixed tensor strings from the two local directions.
 
-2. Every channel in the product class obeys the global bound
+**(ii)** Every channel in the product class obeys the global bound
 
-   ```math
-   R(\mathcal E)\le C_n\epsilon_p(\mathcal E).
-   ```
+```math
+R(\mathcal E)\le C_n\epsilon_p(\mathcal E).
+```
 
-   The coefficient $`C_n`$ is optimal over all sampling weights on $`S_3`$. For each fixed $`n`$,
+The coefficient $`C_n`$ is optimal over all sampling weights on $`S_3`$. For each fixed $`n`$,
 
-   ```math
-   \lim_{\substack{\delta\to0\\\alpha\to0}}
-   \frac{\delta T_3^\star(\delta,\alpha)}{\log(1/\alpha)}=C_n,
-   ```
+```math
+\lim_{\substack{\delta\to0\\\alpha\to0}}
+\frac{\delta T_3^\star(\delta,\alpha)}{\log(1/\alpha)}=C_n,
+```
 
-   with no required relation between the rates at which $`\delta`$ and $`\alpha`$ tend to zero.
+with no required relation between the rates at which $`\delta`$ and $`\alpha`$ tend to zero.
 
 The sections below prove the two parts and distinguish whole-register repetitions from total local channel uses.
 
